@@ -1,5 +1,5 @@
 # OpenCode22
-##Hands For Hunger
+## Hands For Hunger
 An App to prevent Food Wastage by connecting NGO,s to the potential buyers
 
 ## What problem Hands For Hunger solves?
