@@ -1,5 +1,4 @@
-# OpenCode22
-## HandsForHunger
+# HandsForHunger
 An App to prevent Food Wastage by connecting NGO's to the potential donors.
 
 ## What problem HandsForHunger solves?
@@ -9,15 +8,6 @@ Our app ensures a 'Two Way Connection' between NGO's and the donors. The donors 
 * Flutter
 * Firebase
 
-## Dependencies
-You need npm/yarn installed in your local machine in order to run this app.
-
-## Installation
-
-```bash
-  npm install 
-  npm run dev
-```
 ## How To Setup 
 * Make sure your machine is having internet connection.
 * Open shell (which ever your OS support) on your PC.
@@ -27,10 +17,24 @@ You need npm/yarn installed in your local machine in order to run this app.
 * After the process is completed, run the command ```npm run dev```.
 
 
+## Local Setup
+
+- Fork the repo.
+- Clone it to your local setup by using the command `git clone <repo link>`
+- Open the project with Android Studio.
+
+ **Directly cloning from Android Studio (Alternate method):-**
+
+- Go to FILE -> NEW -> PROJECT FROM VERSION CONTROL
+- Copy and paste the url of FORKED repo in the URL field and click clone.
+
 ## Reference Links 
 - [Download and install the latest version of Git.](https://git-scm.com/downloads)
 - [Set your username in Git.](https://help.github.com/articles/setting-your-username-in-git)
 - [Set your commit email address in Git.](https://help.github.com/articles/setting-your-commit-email-address-in-git)
+- [Set up flutter and Android Studio](https://flutter.dev/docs/get-started/install)
+- [Or setting up VS code for flutter](https://flutter.dev/docs/development/tools/vs-code)
+-  Firebase official Documentation: https://firebase.google.com/docs
 
 ## Claim an issue
 Comment on the issue. In case of no activity on the issue even after 2 days, the issue will be reassigned. If you have difficulty approaching the issue, feel free to ask on our discord channel.
