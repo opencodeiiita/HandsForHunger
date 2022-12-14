@@ -1,24 +1,19 @@
-# HandsForHunger
+# Hands For Hunger
 An App to prevent Food Wastage by connecting NGO's to the potential donors.
 
-## What problem HandsForHunger solves?
-Our app ensures a 'Two Way Connection' between NGO's and the donors. The donors can easily look for NGOs ready to accept whenever they have a sufficient amount. And the NGOs can also see the number of donors available whenever they want to reach the hungry.
+## What problem Hands For Hunger solves?
+Our app ensures a 'Two Way Connection' between NGO's and the donors. The NGOs can find food donors available in their vicinity whenever they have a huge mass to cater, while the donors can also easily look for NGOs ready to accept the food.
 
 ## Tech Stack 
 * Flutter
 * Firebase
 
+## Requirments
+- Android Studio Dolphin | 2021.3.1
+- SDK Version 21
+
 ## How To Setup 
-* Make sure your machine is having internet connection.
-* Open shell (which ever your OS support) on your PC.
-* Change drive to the location where you want your project to be copied.
-* Clone it to your local setup by using command git clone ```<repo link>```.
-* Once cloned, Run the following command in the root directory of the project ```npm install```.
-* After the process is completed, run the command ```npm run dev```.
-
-
-## Local Setup
-
+- Make sure your machine is having an internet connection.
 - Fork the repo.
 - Clone it to your local setup by using the command `git clone <repo link>`
 - Open the project with Android Studio.
@@ -34,7 +29,7 @@ Our app ensures a 'Two Way Connection' between NGO's and the donors. The donors 
 - [Set your commit email address in Git.](https://help.github.com/articles/setting-your-commit-email-address-in-git)
 - [Set up flutter and Android Studio](https://flutter.dev/docs/get-started/install)
 - [Or setting up VS code for flutter](https://flutter.dev/docs/development/tools/vs-code)
--  Firebase official Documentation: https://firebase.google.com/docs
+- [Firebase official Documentation](https://firebase.google.com/docs)
 
 ## Claim an issue
 Comment on the issue. In case of no activity on the issue even after 2 days, the issue will be reassigned. If you have difficulty approaching the issue, feel free to ask on our discord channel.
@@ -59,5 +54,5 @@ Please help us follow the best practice to make it easy for the reviewer as well
 
 - Avoid duplicate PRs, if need be comment on the older PR with the PR number of the follow-up (new PR) and close the obsolete PR yourself.
 
-- Be polite: Be polite to other community members.
+- Be polite to other community members.
 
