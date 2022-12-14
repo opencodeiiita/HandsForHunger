@@ -1,9 +1,9 @@
 # OpenCode22
-## Hands For Hunger
-An App to prevent Food Wastage by connecting NGO,s to the potential buyers
+## HandsForHunger
+An App to prevent Food Wastage by connecting NGO's to the potential donors.
 
-## What problem Hands For Hunger solves?
-Our app ensures a 'Two Way Connection' between them. The donors can easily look for NGOs ready to accept whenever they have a sufficient amount. And the NGOs can also see the number of donors available whenever they want to reach the hungry.
+## What problem HandsForHunger solves?
+Our app ensures a 'Two Way Connection' between NGO's and the donors. The donors can easily look for NGOs ready to accept whenever they have a sufficient amount. And the NGOs can also see the number of donors available whenever they want to reach the hungry.
 
 ## Tech Stack 
 * Flutter
