@@ -8,7 +8,7 @@ Our app ensures a 'Two Way Connection' between NGO's and the donors. The NGOs ca
 * Flutter
 * Firebase
 
-## Requirments
+## Requirements
 - Android Studio Dolphin | 2021.3.1
 - SDK Version: '>=2.18.0 <3.10.0'
 
