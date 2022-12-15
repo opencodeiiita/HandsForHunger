@@ -1,8 +1,8 @@
 # Hands For Hunger
-An App to prevent Food Wastage by connecting NGO's to the potential donors.
+An App to prevent Food Wastage by connecting NGO's with the potential donors.
 
 ## What problem Hands For Hunger solves?
-Our app ensures a 'Two Way Connection' between NGO's and the donors. The NGOs can find food donors available in their vicinity whenever they have a huge mass to cater, while the donors can also easily look for NGOs ready to accept the food.
+Our app ensures a 'Two Way Connection' between NGO's and the donors. The NGOs can find food donors available in their vicinity whenever they have a huge mass to cater, while the donors can also easily look up for NGOs ready to accept the food which might otherwise go waste.
 
 ## Tech Stack 
 * Flutter
@@ -10,7 +10,7 @@ Our app ensures a 'Two Way Connection' between NGO's and the donors. The NGOs ca
 
 ## Requirments
 - Android Studio Dolphin | 2021.3.1
-- SDK Version 21
+- SDK Version: '>=2.18.0 <3.10.0'
 
 ## How To Setup 
 - Make sure your machine is having an internet connection.
