@@ -1,7 +1,7 @@
-# Hands For Hunger
+# HandsForHunger
 An App to prevent Food Wastage by connecting NGO's with the potential donors.
 
-## What problem Hands For Hunger solves?
+## What problem HandsForHunger solves?
 Our app ensures a 'Two Way Connection' between NGO's and the donors. The NGOs can find food donors available in their vicinity whenever they have a huge mass to cater, while the donors can also easily look up for NGOs ready to accept the food which might otherwise go waste.
 
 ## Tech Stack 
