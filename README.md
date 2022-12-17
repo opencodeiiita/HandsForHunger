@@ -1,5 +1,5 @@
 # HandsForHunger
-An App to prevent Food Wastage by connecting NGO's with the potential donors.
+Every year, Opencode houses a 'Girls only Repository' with the sole aim to encourage female developers to contribute to opensource. This year, HandsForHunger is not only an initiative to promote said students but also to buils an app to prevent Food Wastage by connecting NGO's with the potential donors.
 
 ## What problem HandsForHunger solves?
 Our app ensures a 'Two Way Connection' between NGO's and the donors. The NGOs can find food donors available in their vicinity whenever they have a huge mass to cater, while the donors can also easily look up for NGOs ready to accept the food which might otherwise go waste.
