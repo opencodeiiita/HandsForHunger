@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "387433025607",
+    "project_id": "handsforhunger-dd0bf",
+    "storage_bucket": "handsforhunger-dd0bf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:387433025607:android:8cb8f51d1bd4bb1855a162",
+        "android_client_info": {
+          "package_name": "com.example.handsforhunger"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "387433025607-qkh7mqfb2h5l91tsopepgr5hg9gskp5n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC5VTq62Kp2QzrqLCPHGn3hwua60OVmmOg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "387433025607-qkh7mqfb2h5l91tsopepgr5hg9gskp5n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
