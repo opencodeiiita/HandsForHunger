@@ -28,7 +28,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                       width: w / 35,
                     ),
                     Container(
-                      padding: EdgeInsets.only(bottom: w / 33),
+                      padding: EdgeInsets.only(bottom: h / 70),
                       height: h / 12,
                       width: w / 6,
                       child: Image.asset('images/WelcomeScreenIcon.png'),
