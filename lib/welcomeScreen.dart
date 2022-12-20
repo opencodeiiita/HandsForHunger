@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:handsforhunger/donor.dart';
 import 'package:handsforhunger/ngo.dart';
-import 'package:sizer/sizer.dart';
 
 class WelcomeScreen extends StatefulWidget {
   @override
@@ -21,36 +20,40 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
             top: h / 14, bottom: h / 15, left: w / 16, right: w / 16),
         child: Column(
           children: [
-            Row(
-              children: [
-                SizedBox(
-                  width: w / 35,
+            Container(
+              child: Center(
+                child: Row(
+                  children: [
+                    SizedBox(
+                      width: w / 35,
+                    ),
+                    Container(
+                      padding: EdgeInsets.only(bottom: h / 70),
+                      height: h / 12,
+                      width: w / 6,
+                      child: Image.asset('images/WelcomeScreenIcon.png'),
+                    ),
+                    Txt(
+                      txt: 'Hands',
+                      colour: Color(0xff4B56FE),
+                      h: h,
+                      w: w,
+                    ),
+                    Txt(
+                      txt: 'for',
+                      colour: Color(0xff686A8A),
+                      h: h,
+                      w: w,
+                    ),
+                    Txt(
+                      txt: 'Hunger',
+                      colour: Color(0xff4B56FE),
+                      h: h,
+                      w: w,
+                    ),
+                  ],
                 ),
-                Container(
-                  padding: EdgeInsets.only(bottom: 13),
-                  height: h / 12,
-                  width: w / 5,
-                  child: Image.asset('images/WelcomeScreenIcon.png'),
-                ),
-                Txt(
-                  txt: 'Hands',
-                  colour: Color(0xff4B56FE),
-                  h: h,
-                  w: w,
-                ),
-                Txt(
-                  txt: 'for',
-                  colour: Color(0xff686A8A),
-                  h: h,
-                  w: w,
-                ),
-                Txt(
-                  txt: 'Hunger',
-                  colour: Color(0xff4B56FE),
-                  h: h,
-                  w: w,
-                ),
-              ],
+              ),
             ),
             SizedBox(
               height: h / 25,
@@ -58,7 +61,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
             Container(
               height: h / 1.9,
               width: w / 1.2,
-              margin: EdgeInsets.only(bottom: 15),
+              margin: EdgeInsets.only(bottom: h / 60),
               padding:
                   EdgeInsets.symmetric(horizontal: h / 30, vertical: w / 10),
               decoration: BoxDecoration(
