@@ -1,7 +1,9 @@
+import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'welcomeScreen.dart';
 
-void main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(const MyApp());
@@ -12,32 +14,20 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    AssetImage splash = AssetImage('images/appIcon.png');
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Hands For Hunger',
-      home: MyHomePage(),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Hands for Hunger'),
-      ),
-      body: Container(
-        color: Colors.black,
-        child: Text('Welcome',style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize:30),),
-      )
-
+      home: AnimatedSplashScreen(
+          splashTransition: SplashTransition.fadeTransition,
+          splashIconSize: 200,
+          splash: Container(
+            child: Image(
+              image: splash,
+            ),
+          ),
+          duration: 3000,
+          nextScreen: WelcomeScreen()),
     );
   }
 }
