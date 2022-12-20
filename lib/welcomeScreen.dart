@@ -17,7 +17,8 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
     return Scaffold(
       body: Container(
         color: Color(0xffFAFAFC),
-        padding: EdgeInsets.only(top: h / 10, left: w / 16, right: w / 16),
+        padding: EdgeInsets.only(
+            top: h / 14, bottom: h / 15, left: w / 16, right: w / 16),
         child: Column(
           children: [
             Row(
@@ -31,9 +32,24 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   width: w / 5,
                   child: Image.asset('images/WelcomeScreenIcon.png'),
                 ),
-                Txt(txt: 'Hands', colour: Color(0xff4B56FE)),
-                Txt(txt: 'for', colour: Color(0xff686A8A)),
-                Txt(txt: 'Hunger', colour: Color(0xff4B56FE)),
+                Txt(
+                  txt: 'Hands',
+                  colour: Color(0xff4B56FE),
+                  h: h,
+                  w: w,
+                ),
+                Txt(
+                  txt: 'for',
+                  colour: Color(0xff686A8A),
+                  h: h,
+                  w: w,
+                ),
+                Txt(
+                  txt: 'Hunger',
+                  colour: Color(0xff4B56FE),
+                  h: h,
+                  w: w,
+                ),
               ],
             ),
             SizedBox(
@@ -102,16 +118,20 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
 }
 
 class Txt extends StatelessWidget {
-  Txt({required this.txt, required this.colour});
+  Txt(
+      {required this.txt,
+      required this.colour,
+      required this.h,
+      required this.w});
   String txt;
   Color colour;
-
+  double h, w;
   @override
   Widget build(BuildContext context) {
     return Text(
       txt,
       style: GoogleFonts.poppins(
-          fontSize: 28, fontWeight: FontWeight.w600, color: colour),
+          fontSize: w / 14, fontWeight: FontWeight.w600, color: colour),
     );
   }
 }
@@ -139,7 +159,9 @@ class BottomButton extends StatelessWidget {
           child: Text(
             txt,
             style: GoogleFonts.poppins(
-                fontSize: 16, fontWeight: FontWeight.w600, color: Colors.white),
+                fontSize: w / 24.5,
+                fontWeight: FontWeight.w600,
+                color: Colors.white),
           ),
         ),
         decoration: BoxDecoration(
