@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:handsforhunger/donor.dart';
 import 'package:handsforhunger/ngo.dart';
+import 'package:sizer/sizer.dart';
 
 class WelcomeScreen extends StatefulWidget {
   @override
@@ -11,21 +12,23 @@ class WelcomeScreen extends StatefulWidget {
 class _WelcomeScreenState extends State<WelcomeScreen> {
   @override
   Widget build(BuildContext context) {
+    double h = (MediaQuery.of(context).size.height),
+        w = (MediaQuery.of(context).size.width);
     return Scaffold(
       body: Container(
         color: Color(0xffFAFAFC),
-        padding: EdgeInsets.only(top: 100, left: 25, right: 25),
+        padding: EdgeInsets.only(top: h / 10, left: w / 16, right: w / 16),
         child: Column(
           children: [
             Row(
               children: [
                 SizedBox(
-                  width: 14,
+                  width: w / 35,
                 ),
                 Container(
                   padding: EdgeInsets.only(bottom: 13),
-                  height: 70,
-                  width: 68,
+                  height: h / 12,
+                  width: w / 5,
                   child: Image.asset('images/WelcomeScreenIcon.png'),
                 ),
                 Txt(txt: 'Hands', colour: Color(0xff4B56FE)),
@@ -34,13 +37,14 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               ],
             ),
             SizedBox(
-              height: 35,
+              height: h / 25,
             ),
             Container(
-              height: 460,
-              width: 330,
+              height: h / 1.9,
+              width: w / 1.2,
               margin: EdgeInsets.only(bottom: 15),
-              padding: EdgeInsets.only(top: 50, left: 40, right: 40),
+              padding:
+                  EdgeInsets.symmetric(horizontal: h / 30, vertical: w / 10),
               decoration: BoxDecoration(
                   color: Colors.white,
                   boxShadow: shadow,
@@ -48,7 +52,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               child: Column(
                 children: [
                   Image.asset('images/WelcomeScreenImage.png'),
-                  SizedBox(height: 20),
+                  SizedBox(height: h / 45),
                   Text(
                     'Improving Lives Together',
                     style: GoogleFonts.poppins(
@@ -57,7 +61,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                         color: Color(0xff353767)),
                   ),
                   SizedBox(
-                    height: 10,
+                    height: h / 87,
                   ),
                   Center(
                       child: Text(
@@ -78,8 +82,18 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 ],
               ),
             ),
-            BottomButton(txt: 'Ngo', path: NgoScreen()),
-            BottomButton(txt: 'Donor', path: DonorScreen()),
+            BottomButton(
+              txt: 'Ngo',
+              path: NgoScreen(),
+              h: h,
+              w: w,
+            ),
+            BottomButton(
+              txt: 'Donor',
+              path: DonorScreen(),
+              h: h,
+              w: w,
+            ),
           ],
         ),
       ),
@@ -103,7 +117,12 @@ class Txt extends StatelessWidget {
 }
 
 class BottomButton extends StatelessWidget {
-  BottomButton({required this.txt, required this.path});
+  BottomButton(
+      {required this.txt,
+      required this.path,
+      required this.h,
+      required this.w});
+  double h, w;
   String txt;
   Widget path;
   @override
@@ -114,8 +133,8 @@ class BottomButton extends StatelessWidget {
       },
       child: Container(
         margin: EdgeInsets.only(top: 25),
-        height: 52,
-        width: 320,
+        height: h / 16,
+        width: w / 1.18,
         child: Center(
           child: Text(
             txt,
@@ -136,5 +155,5 @@ class BottomButton extends StatelessWidget {
 }
 
 List<BoxShadow> shadow = [
-  BoxShadow(color: Colors.grey[600]!, blurRadius: 10, offset: Offset(0, 10))
+  BoxShadow(color: Colors.grey, blurRadius: 10, offset: Offset(0, 10))
 ];

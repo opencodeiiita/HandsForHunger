@@ -1,7 +1,6 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-
 import 'welcomeScreen.dart';
 
 void main() async {
@@ -20,7 +19,13 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Hands For Hunger',
       home: AnimatedSplashScreen(
-          splash: Image(image: splash),
+          splashTransition: SplashTransition.fadeTransition,
+          splashIconSize: 200,
+          splash: Container(
+            child: Image(
+              image: splash,
+            ),
+          ),
           duration: 3000,
           nextScreen: WelcomeScreen()),
     );
