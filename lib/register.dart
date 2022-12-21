@@ -163,28 +163,31 @@ class _RegisterPageState extends State<RegisterPage> {
                   ],
                 ),
               ),
-              Container(
-                padding:
-                    EdgeInsets.symmetric(horizontal: w / 7, vertical: h / 40),
-                child: Row(
-                  children: [
-                    Text(
-                      'Don\'t have an account? ',
-                      style: GoogleFonts.inter(
-                          fontSize: h / 60,
-                          fontWeight: FontWeight.w600,
-                          color: Color(0xff67698F)),
-                    ),
-                    Text(
-                      'Sign up!',
-                      style: GoogleFonts.poppins(
-                          fontSize: h / 60,
-                          fontWeight: FontWeight.w800,
-                          color: Color(0xff67698E)),
-                    )
-                  ],
-                ),
-              )
+              SizedBox(
+                height: h / 40,
+              ),
+              RichText(
+                text: TextSpan(
+                    text: 'Don\'t have an account? ',
+                    style: GoogleFonts.inter(
+                        fontSize: h / 60,
+                        fontWeight: FontWeight.w600,
+                        color: Color(0xff67698F)),
+                    children: [
+                      TextSpan(
+                        text: 'Sign up!',
+                        style: GoogleFonts.poppins(
+                            fontSize: h / 60,
+                            fontWeight: FontWeight.w800,
+                            color: Color(0xff67698E)),
+                      )
+                    ]),
+              ),
+
+              // ],
+              // ),
+              // ),
+              // )
             ],
           ),
         ),
