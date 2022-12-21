@@ -5,14 +5,14 @@ import 'package:handsforhunger/welcomeScreen.dart';
 bool pressed = false;
 Icon Icn = Icon(Icons.remove_red_eye);
 
-class RegisterPage extends StatefulWidget {
-  const RegisterPage({super.key});
+class LogInPage extends StatefulWidget {
+  const LogInPage({super.key});
 
   @override
-  State<RegisterPage> createState() => _RegisterPageState();
+  State<LogInPage> createState() => _LogInPageState();
 }
 
-class _RegisterPageState extends State<RegisterPage> {
+class _LogInPageState extends State<LogInPage> {
   @override
   Widget build(BuildContext context) {
     double h = (MediaQuery.of(context).size.height),
