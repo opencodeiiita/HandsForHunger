@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:handsforhunger/donor.dart';
+import 'package:handsforhunger/logIn.dart';
 import 'package:handsforhunger/ngo.dart';
 
 class WelcomeScreen extends StatefulWidget {
@@ -20,41 +21,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
             top: h / 14, bottom: h / 15, left: w / 16, right: w / 16),
         child: Column(
           children: [
-            Container(
-              child: Center(
-                child: Row(
-                  children: [
-                    SizedBox(
-                      width: w / 35,
-                    ),
-                    Container(
-                      padding: EdgeInsets.only(bottom: h / 70),
-                      height: h / 12,
-                      width: w / 6,
-                      child: Image.asset('images/WelcomeScreenIcon.png'),
-                    ),
-                    Txt(
-                      txt: 'Hands',
-                      colour: Color(0xff4B56FE),
-                      h: h,
-                      w: w,
-                    ),
-                    Txt(
-                      txt: 'for',
-                      colour: Color(0xff686A8A),
-                      h: h,
-                      w: w,
-                    ),
-                    Txt(
-                      txt: 'Hunger',
-                      colour: Color(0xff4B56FE),
-                      h: h,
-                      w: w,
-                    ),
-                  ],
-                ),
-              ),
-            ),
+            TopText(),
             SizedBox(
               height: h / 25,
             ),
@@ -103,13 +70,13 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
             ),
             BottomButton(
               txt: 'Ngo',
-              path: NgoScreen(),
+              path: LogInPage(),
               h: h,
               w: w,
             ),
             BottomButton(
               txt: 'Donor',
-              path: DonorScreen(),
+              path: LogInPage(),
               h: h,
               w: w,
             ),
@@ -125,16 +92,17 @@ class Txt extends StatelessWidget {
       {required this.txt,
       required this.colour,
       required this.h,
-      required this.w});
+      required this.w,
+      required this.f});
   String txt;
   Color colour;
-  double h, w;
+  double h, w, f;
   @override
   Widget build(BuildContext context) {
     return Text(
       txt,
       style: GoogleFonts.poppins(
-          fontSize: w / 14, fontWeight: FontWeight.w600, color: colour),
+          fontSize: f, fontWeight: FontWeight.w600, color: colour),
     );
   }
 }
@@ -182,3 +150,49 @@ class BottomButton extends StatelessWidget {
 List<BoxShadow> shadow = [
   BoxShadow(color: Colors.grey, blurRadius: 10, offset: Offset(0, 10))
 ];
+
+class TopText extends StatelessWidget {
+  const TopText({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    double h = (MediaQuery.of(context).size.height),
+        w = (MediaQuery.of(context).size.width);
+    return Center(
+      child: Row(
+        children: [
+          SizedBox(
+            width: w / 35,
+          ),
+          Container(
+            padding: EdgeInsets.only(bottom: h / 70),
+            height: h / 12,
+            width: w / 6,
+            child: Image.asset('images/WelcomeScreenIcon.png'),
+          ),
+          Txt(
+            txt: 'Hands',
+            colour: Color(0xff4B56FE),
+            h: h,
+            w: w,
+            f: w / 14,
+          ),
+          Txt(
+            txt: 'for',
+            colour: Color(0xff686A8A),
+            h: h,
+            w: w,
+            f: w / 14,
+          ),
+          Txt(
+            txt: 'Hunger',
+            colour: Color(0xff4B56FE),
+            h: h,
+            w: w,
+            f: w / 14,
+          ),
+        ],
+      ),
+    );
+  }
+}

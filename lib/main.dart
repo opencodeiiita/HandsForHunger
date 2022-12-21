@@ -1,6 +1,7 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:handsforhunger/logIn.dart';
 import 'welcomeScreen.dart';
 
 void main() async {
@@ -16,6 +17,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     AssetImage splash = AssetImage('images/appIcon.png');
     return MaterialApp(
+      theme: ThemeData().copyWith(
+        colorScheme: ThemeData().colorScheme.copyWith(
+              primary: Colors.grey[500],
+            ),
+      ),
       debugShowCheckedModeBanner: false,
       title: 'Hands For Hunger',
       home: AnimatedSplashScreen(
