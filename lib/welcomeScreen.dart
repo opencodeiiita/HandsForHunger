@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:handsforhunger/donor.dart';
+import 'package:handsforhunger/logIn.dart';
 import 'package:handsforhunger/ngo.dart';
 
 class WelcomeScreen extends StatefulWidget {
@@ -69,13 +70,13 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
             ),
             BottomButton(
               txt: 'Ngo',
-              path: NgoScreen(),
+              path: LogInPage(),
               h: h,
               w: w,
             ),
             BottomButton(
               txt: 'Donor',
-              path: DonorScreen(),
+              path: LogInPage(),
               h: h,
               w: w,
             ),

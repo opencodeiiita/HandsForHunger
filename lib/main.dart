@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
             ),
           ),
           duration: 3000,
-          nextScreen: LogInPage()),
+          nextScreen: WelcomeScreen()),
     );
   }
 }

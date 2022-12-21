@@ -119,8 +119,7 @@ class _LogInPageState extends State<LogInPage> {
               SizedBox(
                 height: h / 20,
               ),
-              BottomButton(
-                  txt: 'Get Started', path: WelcomeScreen(), h: h, w: w),
+              BottomButton(txt: 'Get Started', path: LogInPage(), h: h, w: w),
               SizedBox(
                 height: h / 30,
               ),
