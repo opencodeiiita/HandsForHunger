@@ -1,8 +1,10 @@
-import 'package:animated_splash_screen/animated_splash_screen.dart';
+import 'package:animated_splash_screen/animated_splash_screen.dart' show AnimatedSplashScreen, SplashTransition;
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:handsforhunger/logIn.dart';
 import 'welcomeScreen.dart';
+import 'package:lottie/lottie.dart';
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -26,12 +28,12 @@ class MyApp extends StatelessWidget {
       title: 'Hands For Hunger',
       home: AnimatedSplashScreen(
           splashTransition: SplashTransition.fadeTransition,
-          splashIconSize: 200,
-          splash: Container(
-            child: Image(
-              image: splash,
-            ),
+          
+          
+          splash: SafeArea(
+            child: Lottie.asset('images/donate.json', height: 300, width: 300),
           ),
+          splashIconSize: 250,
           duration: 3000,
           nextScreen: WelcomeScreen()),
     );
