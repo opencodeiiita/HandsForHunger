@@ -5,14 +5,14 @@ import 'package:handsforhunger/welcomeScreen.dart';
 bool pressed = false;
 Icon Icn = Icon(Icons.remove_red_eye);
 
-class LogInPage extends StatefulWidget {
-  const LogInPage({super.key});
+class Registpage extends StatefulWidget {
+  const Registpage({super.key});
 
   @override
-  State<LogInPage> createState() => _LogInPageState();
+  State<Registpage> createState() => _RegistpageState();
 }
 
-class _LogInPageState extends State<LogInPage> {
+class _RegistpageState extends State<Registpage> {
   @override
   Widget build(BuildContext context) {
     double h = (MediaQuery.of(context).size.height),
@@ -27,7 +27,7 @@ class _LogInPageState extends State<LogInPage> {
             children: [
               TopText(),
               SizedBox(
-                height: h / 25,
+                height: h / 5,
               ),
               Row(
                 children: [
@@ -38,7 +38,7 @@ class _LogInPageState extends State<LogInPage> {
                     alignment: Alignment.centerLeft,
                     child: Text(
                       textAlign: TextAlign.left,
-                      'Log In',
+                      'Sign Up',
                       style: GoogleFonts.poppins(
                           fontSize: w / 18,
                           fontWeight: FontWeight.w600,
@@ -108,30 +108,15 @@ class _LogInPageState extends State<LogInPage> {
                   ),
                 ),
               ),
+              
               SizedBox(
-                height: h / 15,
+                height: h / 80,
               ),
-              Text(
-                'or',
-                style: GoogleFonts.inter(
-                    fontSize: w / 28, color: Color(0xffABAEB0)),
-              ),
-              SizedBox(
-                height: h / 20,
-              ),
-              BottomButton(txt: 'Get Started', path: LogInPage(), h: h, w: w),
+              BottomButton(txt: 'Get Started', path: Registpage(), h: h, w: w),
+             
+              
               SizedBox(
                 height: h / 30,
-              ),
-              Text(
-                'Forgot Password',
-                style: GoogleFonts.poppins(
-                    fontSize: w / 28,
-                    fontWeight: FontWeight.w500,
-                    color: Color(0xff67698F)),
-              ),
-              SizedBox(
-                height: h / 20,
               ),
               Container(
                 padding: EdgeInsets.symmetric(horizontal: w / 20),
@@ -139,7 +124,7 @@ class _LogInPageState extends State<LogInPage> {
                   children: [
                     SizedBox(
                         width: w / 3,
-                        height: h / 50,
+                        height: h / 60,
                         child: Divider(
                           thickness: 1.5,
                         )),
@@ -167,15 +152,14 @@ class _LogInPageState extends State<LogInPage> {
               ),
               RichText(
                 text: TextSpan(
-                    text: 'Don\'t have an account? ',
+                    text: 'Have an account? ',
                     style: GoogleFonts.inter(
                         fontSize: h / 60,
                         fontWeight: FontWeight.w600,
                         color: Color(0xff67698F)),
                     children: [
-                      
                       TextSpan(
-                        text: 'Sign up!',
+                        text: 'Log In!',
                         style: GoogleFonts.poppins(
                             fontSize: h / 60,
                             fontWeight: FontWeight.w800,
@@ -194,4 +178,3 @@ class _LogInPageState extends State<LogInPage> {
 List<BoxShadow> Shadow = [
   BoxShadow(color: Colors.grey[300]!, blurRadius: 10, offset: Offset(0, 10))
 ];
-
