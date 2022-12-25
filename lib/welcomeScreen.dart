@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:handsforhunger/donor.dart';
 import 'package:handsforhunger/logIn.dart';
-import 'package:handsforhunger/ngo.dart';
+import 'Registration.dart';
 
 class WelcomeScreen extends StatefulWidget {
   @override
@@ -22,15 +21,15 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
         child: Column(
           children: [
             TopText(),
-            SizedBox(
-              height: h / 25,
-            ),
+            // SizedBox(
+            //   height: h / 45,
+            // ),
             Container(
-              height: h / 1.9,
+              height: h / 1.8,
               width: w / 1.2,
-              margin: EdgeInsets.only(bottom: h / 60),
+            //  margin: EdgeInsets.only(bottom: h / 60),
               padding:
-                  EdgeInsets.symmetric(horizontal: h / 30, vertical: w / 10),
+                  EdgeInsets.symmetric(horizontal: h / 30,),
               decoration: BoxDecoration(
                   color: Colors.white,
                   boxShadow: shadow,
@@ -38,7 +37,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               child: Column(
                 children: [
                   Image.asset('images/WelcomeScreenImage.png'),
-                  SizedBox(height: h / 45),
+                  SizedBox(height: h / 55),
                   Text(
                     'Improving Lives Together',
                     style: GoogleFonts.poppins(
@@ -47,7 +46,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                         color: Color(0xff353767)),
                   ),
                   SizedBox(
-                    height: h / 87,
+                    height: h / 100,
                   ),
                   Center(
                       child: Text(
@@ -70,7 +69,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
             ),
             BottomButton(
               txt: 'Ngo',
-              path: LogInPage(),
+              path: Registpage(),
               h: h,
               w: w,
             ),
@@ -101,7 +100,7 @@ class Txt extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       txt,
-      style: GoogleFonts.poppins(
+      style: GoogleFonts.rakkas(
           fontSize: f, fontWeight: FontWeight.w600, color: colour),
     );
   }
@@ -122,26 +121,29 @@ class BottomButton extends StatelessWidget {
       onTap: () {
         Navigator.push(context, MaterialPageRoute(builder: (context) => path));
       },
-      child: Container(
-        margin: EdgeInsets.only(top: 25),
-        height: h / 16,
-        width: w / 1.18,
-        child: Center(
-          child: Text(
-            txt,
-            style: GoogleFonts.poppins(
-                fontSize: w / 24.5,
-                fontWeight: FontWeight.w600,
-                color: Colors.white),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 30),
+        child: Container(
+          margin: EdgeInsets.only(top: 20),
+          height: h / 14,
+          width: w / 1.18,
+          child: Center(
+            child: Text(
+              txt,
+              style: GoogleFonts.poppins(
+                  fontSize: w / 24.5,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.white),
+            ),
           ),
+          decoration: BoxDecoration(
+              gradient: LinearGradient(
+                  colors: [Color(0xffFFDA94), Color(0xffFF942F)],
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter),
+              borderRadius: BorderRadius.circular(12),
+              color: Color(0xff4BB0FE)),
         ),
-        decoration: BoxDecoration(
-            gradient: LinearGradient(
-                colors: [Color(0xff4BB0FE), Color(0xff4B56FE)],
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter),
-            borderRadius: BorderRadius.circular(12),
-            color: Color(0xff4BB0FE)),
       ),
     );
   }
@@ -166,30 +168,30 @@ class TopText extends StatelessWidget {
           ),
           Container(
             padding: EdgeInsets.only(bottom: h / 70),
-            height: h / 12,
+            height: h / 10,
             width: w / 6,
-            child: Image.asset('images/WelcomeScreenIcon.png'),
+            child: Image.asset('images/appIcon.png'),
           ),
           Txt(
             txt: 'Hands',
-            colour: Color(0xff4B56FE),
+            colour: Color(0xffFFBA25),
             h: h,
             w: w,
-            f: w / 14,
+            f: w / 11,
           ),
           Txt(
             txt: 'for',
             colour: Color(0xff686A8A),
             h: h,
             w: w,
-            f: w / 14,
+            f: w / 11,
           ),
           Txt(
             txt: 'Hunger',
-            colour: Color(0xff4B56FE),
+            colour: Color(0xffFFBA25),
             h: h,
             w: w,
-            f: w / 14,
+            f: w / 11,
           ),
         ],
       ),

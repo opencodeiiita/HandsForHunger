@@ -40,9 +40,9 @@ class _LogInPageState extends State<LogInPage> {
                       textAlign: TextAlign.left,
                       'Log In',
                       style: GoogleFonts.poppins(
-                          fontSize: w / 18,
+                          fontSize: w / 16,
                           fontWeight: FontWeight.w600,
-                          color: Color(0xff4B56FE)),
+                          color: Color(0xffFFBA25)),
                     ),
                   ),
                 ],
@@ -52,7 +52,7 @@ class _LogInPageState extends State<LogInPage> {
               ),
               Container(
                 margin: EdgeInsets.symmetric(horizontal: h / 80),
-                height: h / 17,
+                height: h / 13,
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(15),
@@ -78,7 +78,7 @@ class _LogInPageState extends State<LogInPage> {
               ),
               Container(
                 margin: EdgeInsets.symmetric(horizontal: h / 80),
-                height: h / 17,
+                height: h / 13,
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(15),
@@ -111,24 +111,9 @@ class _LogInPageState extends State<LogInPage> {
               SizedBox(
                 height: h / 15,
               ),
-              Text(
-                'or',
-                style: GoogleFonts.inter(
-                    fontSize: w / 28, color: Color(0xffABAEB0)),
-              ),
-              SizedBox(
-                height: h / 20,
-              ),
-              BottomButton(txt: 'Get Started', path: LogInPage(), h: h, w: w),
+              BottomButton(txt: 'Login', path: LogInPage(), h: h, w: w),
               SizedBox(
                 height: h / 30,
-              ),
-              Text(
-                'Forgot Password',
-                style: GoogleFonts.poppins(
-                    fontSize: w / 28,
-                    fontWeight: FontWeight.w500,
-                    color: Color(0xff67698F)),
               ),
               SizedBox(
                 height: h / 20,
@@ -161,6 +146,16 @@ class _LogInPageState extends State<LogInPage> {
                         )),
                   ],
                 ),
+              ),
+              SizedBox(
+                height: h / 40,
+              ),
+              Text(
+                'Sign Up With Google',
+                style: GoogleFonts.inter(
+                    fontSize: w / 25,
+                    fontWeight: FontWeight.w400,
+                    color: Color(0xff67698F)),
               ),
               SizedBox(
                 height: h / 40,

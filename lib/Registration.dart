@@ -27,7 +27,7 @@ class _RegistpageState extends State<Registpage> {
             children: [
               TopText(),
               SizedBox(
-                height: h / 5,
+                height: h / 25,
               ),
               Row(
                 children: [
@@ -40,9 +40,9 @@ class _RegistpageState extends State<Registpage> {
                       textAlign: TextAlign.left,
                       'Sign Up',
                       style: GoogleFonts.poppins(
-                          fontSize: w / 18,
+                          fontSize: w / 16,
                           fontWeight: FontWeight.w600,
-                          color: Color(0xff4B56FE)),
+                          color: Color(0xffFFBA25)),
                     ),
                   ),
                 ],
@@ -52,7 +52,7 @@ class _RegistpageState extends State<Registpage> {
               ),
               Container(
                 margin: EdgeInsets.symmetric(horizontal: h / 80),
-                height: h / 17,
+                height: h / 13,
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(15),
@@ -78,7 +78,7 @@ class _RegistpageState extends State<Registpage> {
               ),
               Container(
                 margin: EdgeInsets.symmetric(horizontal: h / 80),
-                height: h / 17,
+                height: h / 13,
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(15),
@@ -110,11 +110,12 @@ class _RegistpageState extends State<Registpage> {
               ),
               
               SizedBox(
-                height: h / 80,
+                height: h / 15,
               ),
-              BottomButton(txt: 'Get Started', path: Registpage(), h: h, w: w),
-             
-              
+              BottomButton(txt: 'Register', path: Registpage(), h: h, w: w),
+              SizedBox(
+                height: h / 20,
+              ),
               SizedBox(
                 height: h / 30,
               ),
@@ -150,18 +151,28 @@ class _RegistpageState extends State<Registpage> {
               SizedBox(
                 height: h / 40,
               ),
+              Text(
+                'Sign Up With Google',
+                style: GoogleFonts.inter(
+                    fontSize: w / 25,
+                    fontWeight: FontWeight.w400,
+                    color: Color(0xff67698F)),
+              ),
+              SizedBox(
+                height: h / 40,
+              ),
               RichText(
                 text: TextSpan(
                     text: 'Have an account? ',
                     style: GoogleFonts.inter(
-                        fontSize: h / 60,
+                        fontSize: h / 54,
                         fontWeight: FontWeight.w600,
                         color: Color(0xff67698F)),
                     children: [
                       TextSpan(
                         text: 'Log In!',
                         style: GoogleFonts.poppins(
-                            fontSize: h / 60,
+                            fontSize: h / 54,
                             fontWeight: FontWeight.w800,
                             color: Color(0xff67698E)),
                       )
