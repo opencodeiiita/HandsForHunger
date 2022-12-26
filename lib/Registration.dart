@@ -13,6 +13,8 @@ class Registpage extends StatefulWidget {
 }
 
 class _RegistpageState extends State<Registpage> {
+  String _text="";
+  String _password="";
   @override
   Widget build(BuildContext context) {
     double h = (MediaQuery.of(context).size.height),
@@ -60,7 +62,9 @@ class _RegistpageState extends State<Registpage> {
                 ),
                 child: Center(
                   child: TextFormField(
-                    onChanged: (value) {},
+                    onChanged: (value) {
+                      _text=value;
+                    },
                     decoration: InputDecoration(
                         border: InputBorder.none,
                         hintText: 'Email or Phone Number',
@@ -86,7 +90,9 @@ class _RegistpageState extends State<Registpage> {
                 ),
                 child: Center(
                   child: TextFormField(
-                    onChanged: (value) {},
+                    onChanged: (value) {
+                      _password=value;
+                    },
                     decoration: InputDecoration(
                       border: InputBorder.none,
                       hintText: 'Password',
@@ -112,7 +118,7 @@ class _RegistpageState extends State<Registpage> {
               SizedBox(
                 height: h / 15,
               ),
-              BottomButton(txt: 'Register', path: Registpage(), h: h, w: w),
+              BottomButton(txt: 'Login', path: Registpage(), h: h, w: w , text : _text , password: _password,),
               SizedBox(
                 height: h / 20,
               ),
@@ -186,6 +192,66 @@ class _RegistpageState extends State<Registpage> {
   }
 }
 
+class BottomButton extends StatelessWidget {
+  BottomButton(
+      {required this.txt,
+        required this.path,
+        required this.h,
+        required this.w,
+        required this.text,
+        required this.password});
+  double h, w;
+  String txt,text,password;
+  Widget path;
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        if(text==""){
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: Text("Please enter Email or Phone Number"),
+            
+          ));
+        }
+        else if (password==""){
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: Text("Please enter password"),
+          ));
+        }
+        else
+          Navigator.push(context, MaterialPageRoute(builder: (context) => path));
+      },
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 30),
+        child: Container(
+          margin: EdgeInsets.only(top: 20),
+          height: h / 14,
+          width: w / 1.18,
+          child: Center(
+            child: Text(
+              txt,
+              style: GoogleFonts.poppins(
+                  fontSize: w / 24.5,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.white),
+            ),
+          ),
+          decoration: BoxDecoration(
+              gradient: LinearGradient(
+                  colors: [Color(0xffFFDA94), Color(0xffFF942F)],
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter),
+              borderRadius: BorderRadius.circular(12),
+              color: Color(0xff4BB0FE)),
+        ),
+      ),
+    );
+  }
+}
+
+
+
 List<BoxShadow> Shadow = [
   BoxShadow(color: Colors.grey[300]!, blurRadius: 10, offset: Offset(0, 10))
 ];
+
