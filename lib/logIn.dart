@@ -10,13 +10,12 @@ class LogInPage extends StatefulWidget {
   const LogInPage({super.key});
 
   @override
-
   State<LogInPage> createState() => _LogInPageState();
 }
 
 class _LogInPageState extends State<LogInPage> {
-  String login_email="";
-  String login_password="";
+  String login_email = "";
+  String login_password = "";
   @override
   Widget build(BuildContext context) {
     double h = (MediaQuery.of(context).size.height),
@@ -65,10 +64,8 @@ class _LogInPageState extends State<LogInPage> {
                 child: Center(
                   child: TextFormField(
                     onChanged: (value) {
-                        login_email = value;
-                      }
-
-                    ,
+                      login_email = value;
+                    },
                     decoration: InputDecoration(
                         border: InputBorder.none,
                         hintText: 'Email or Phone Number',
@@ -122,9 +119,12 @@ class _LogInPageState extends State<LogInPage> {
                 height: h / 15,
               ),
               BottomButton(
-
-                  txt: 'Login', path: LogInPage(), h: h, w: w , text : login_email , password: login_password,
-
+                txt: 'Login',
+                path: LogInPage(),
+                h: h,
+                w: w,
+                text: login_email,
+                password: login_password,
               ),
               SizedBox(
                 height: h / 30,
@@ -219,37 +219,34 @@ class _LogInPageState extends State<LogInPage> {
       ),
     );
   }
-
 }
-
 
 class BottomButton extends StatelessWidget {
   BottomButton(
       {required this.txt,
-        required this.path,
-        required this.h,
-        required this.w,
-        required this.text,
-        required this.password});
+      required this.path,
+      required this.h,
+      required this.w,
+      required this.text,
+      required this.password});
   double h, w;
-  String txt,text,password;
+  String txt, text, password;
   Widget path;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        if(text==""){
+        if (text == "") {
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
             content: Text("Please enter Email or Phone Number"),
           ));
-        }
-        else if (password==""){
+        } else if (password == "") {
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
             content: Text("Please enter password"),
           ));
-        }
-        else
-        Navigator.push(context, MaterialPageRoute(builder: (context) => path));
+        } else
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => path));
       },
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 30),
@@ -286,43 +283,3 @@ List<BoxShadow> shadow = [
 List<BoxShadow> Shadow = [
   BoxShadow(color: Colors.grey[300]!, blurRadius: 10, offset: Offset(0, 10))
 ];
-
-class BottomButton extends StatelessWidget {
-  BottomButton(
-      {required this.txt,
-      required this.path,
-      required this.h,
-      required this.w});
-  double h, w;
-  String txt;
-  Widget path;
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        Navigator.push(context, MaterialPageRoute(builder: (context) => path));
-      },
-      child: Container(
-        margin: EdgeInsets.only(top: 25),
-        height: h / 16,
-        width: w / 1.18,
-        child: Center(
-          child: Text(
-            txt,
-            style: GoogleFonts.poppins(
-                fontSize: w / 24.5,
-                fontWeight: FontWeight.w600,
-                color: Colors.white),
-          ),
-        ),
-        decoration: BoxDecoration(
-            gradient: LinearGradient(
-                colors: [Color(0xff4BB0FE), Color(0xff4B56FE)],
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter),
-            borderRadius: BorderRadius.circular(12),
-            color: Color(0xff4BB0FE)),
-      ),
-    );
-  }
-}
