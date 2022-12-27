@@ -1,7 +1,6 @@
-import 'package:animated_splash_screen/animated_splash_screen.dart';
+import 'package:animated_splash_screen/animated_splash_screen.dart' show AnimatedSplashScreen, SplashTransition;
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:handsforhunger/logIn.dart';
 import 'welcomeScreen.dart';
 
 void main() async {
@@ -32,7 +31,7 @@ class MyApp extends StatelessWidget {
               image: splash,
             ),
           ),
-          duration: 3000,
+          duration: 2000,
           nextScreen: WelcomeScreen()),
     );
   }

@@ -14,8 +14,8 @@ class Registpage extends StatefulWidget {
 }
 
 class _RegistpageState extends State<Registpage> {
-  String _text = "";
-  String _password = "";
+  String _text="";
+  String _password="";
   @override
   Widget build(BuildContext context) {
     double h = (MediaQuery.of(context).size.height),
@@ -64,7 +64,7 @@ class _RegistpageState extends State<Registpage> {
                 child: Center(
                   child: TextFormField(
                     onChanged: (value) {
-                      _text = value;
+                      _text=value;
                     },
                     decoration: InputDecoration(
                         border: InputBorder.none,
@@ -92,7 +92,7 @@ class _RegistpageState extends State<Registpage> {
                 child: Center(
                   child: TextFormField(
                     onChanged: (value) {
-                      _password = value;
+                      _password=value;
                     },
                     decoration: InputDecoration(
                       border: InputBorder.none,
@@ -247,6 +247,7 @@ class BottomButton extends StatelessWidget {
         } else
           Navigator.push(
               context, MaterialPageRoute(builder: (context) => path));
+
       },
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 30),
@@ -279,3 +280,4 @@ class BottomButton extends StatelessWidget {
 List<BoxShadow> Shadow = [
   BoxShadow(color: Colors.grey[300]!, blurRadius: 10, offset: Offset(0, 10))
 ];
+
