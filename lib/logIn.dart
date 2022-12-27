@@ -120,34 +120,7 @@ class _LogInPageState extends State<LogInPage> {
               SizedBox(
                 height: h / 20,
               ),
-              // BottomButton(txt: 'Get Started', path: LogInPage(), h: h, w: w),
-              GestureDetector(
-                onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => LogInPage()));
-                },
-                child: Container(
-                  margin: EdgeInsets.only(top: 25),
-                  height: h / 16,
-                  width: w / 1.18,
-                  child: Center(
-                    child: Text(
-                      'Get Started',
-                      style: GoogleFonts.poppins(
-                          fontSize: w / 24.5,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.white),
-                    ),
-                  ),
-                  decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                          colors: [Color(0xff4BB0FE), Color(0xff4B56FE)],
-                          begin: Alignment.topCenter,
-                          end: Alignment.bottomCenter),
-                      borderRadius: BorderRadius.circular(12),
-                      color: Color(0xff4BB0FE)),
-                ),
-              ),
+              BottomButton(txt: 'Get Started', path: Registpage(), h: h, w: w),
               SizedBox(
                 height: h / 30,
               ),
@@ -234,3 +207,43 @@ class _LogInPageState extends State<LogInPage> {
 List<BoxShadow> Shadow = [
   BoxShadow(color: Colors.grey[300]!, blurRadius: 10, offset: Offset(0, 10))
 ];
+
+class BottomButton extends StatelessWidget {
+  BottomButton(
+      {required this.txt,
+      required this.path,
+      required this.h,
+      required this.w});
+  double h, w;
+  String txt;
+  Widget path;
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(context, MaterialPageRoute(builder: (context) => path));
+      },
+      child: Container(
+        margin: EdgeInsets.only(top: 25),
+        height: h / 16,
+        width: w / 1.18,
+        child: Center(
+          child: Text(
+            txt,
+            style: GoogleFonts.poppins(
+                fontSize: w / 24.5,
+                fontWeight: FontWeight.w600,
+                color: Colors.white),
+          ),
+        ),
+        decoration: BoxDecoration(
+            gradient: LinearGradient(
+                colors: [Color(0xff4BB0FE), Color(0xff4B56FE)],
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter),
+            borderRadius: BorderRadius.circular(12),
+            color: Color(0xff4BB0FE)),
+      ),
+    );
+  }
+}
