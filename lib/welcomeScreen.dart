@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:handsforhunger/logIn.dart';
-import 'Registration.dart';
+import 'package:handsforhunger/Registration.dart';
+import 'logIn.dart';
 
 class WelcomeScreen extends StatefulWidget {
   @override
@@ -27,9 +27,10 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
             Container(
               height: h / 1.8,
               width: w / 1.2,
-            //  margin: EdgeInsets.only(bottom: h / 60),
-              padding:
-                  EdgeInsets.symmetric(horizontal: h / 30,),
+              //  margin: EdgeInsets.only(bottom: h / 60),
+              padding: EdgeInsets.symmetric(
+                horizontal: h / 30,
+              ),
               decoration: BoxDecoration(
                   color: Colors.white,
                   boxShadow: shadow,

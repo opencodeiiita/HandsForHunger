@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:handsforhunger/logIn.dart';
 import 'package:handsforhunger/welcomeScreen.dart';
 
 bool pressed = false;
@@ -114,11 +115,17 @@ class _RegistpageState extends State<Registpage> {
                   ),
                 ),
               ),
-              
               SizedBox(
                 height: h / 15,
               ),
-              BottomButton(txt: 'Login', path: Registpage(), h: h, w: w , text : _text , password: _password,),
+              BottomButton(
+                txt: 'Login',
+                path: Registpage(),
+                h: h,
+                w: w,
+                text: _text,
+                password: _password,
+              ),
               SizedBox(
                 height: h / 20,
               ),
@@ -157,6 +164,22 @@ class _RegistpageState extends State<Registpage> {
               SizedBox(
                 height: h / 40,
               ),
+              GestureDetector(
+                child: CircleAvatar(
+                  radius: 23.2,
+                  backgroundColor: Colors.black,
+                  child: CircleAvatar(
+                    radius: 23,
+                    child: Image.asset(
+                      'images/google_logo.png',
+                    ),
+                    backgroundColor: Color(0xffFAFAFC),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: h / 100,
+              ),
               Text(
                 'Sign Up With Google',
                 style: GoogleFonts.inter(
@@ -167,22 +190,28 @@ class _RegistpageState extends State<Registpage> {
               SizedBox(
                 height: h / 40,
               ),
-              RichText(
-                text: TextSpan(
-                    text: 'Have an account? ',
-                    style: GoogleFonts.inter(
-                        fontSize: h / 54,
-                        fontWeight: FontWeight.w600,
-                        color: Color(0xff67698F)),
-                    children: [
-                      TextSpan(
-                        text: 'Log In!',
-                        style: GoogleFonts.poppins(
-                            fontSize: h / 54,
-                            fontWeight: FontWeight.w800,
-                            color: Color(0xff67698E)),
-                      )
-                    ]),
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => LogInPage()));
+                },
+                child: RichText(
+                  text: TextSpan(
+                      text: 'Have an account? ',
+                      style: GoogleFonts.inter(
+                          fontSize: h / 54,
+                          fontWeight: FontWeight.w600,
+                          color: Color(0xff67698F)),
+                      children: [
+                        TextSpan(
+                          text: 'Log In!',
+                          style: GoogleFonts.poppins(
+                              fontSize: h / 54,
+                              fontWeight: FontWeight.w800,
+                              color: Color(0xff67698E)),
+                        )
+                      ]),
+                ),
               ),
             ],
           ),
@@ -195,31 +224,30 @@ class _RegistpageState extends State<Registpage> {
 class BottomButton extends StatelessWidget {
   BottomButton(
       {required this.txt,
-        required this.path,
-        required this.h,
-        required this.w,
-        required this.text,
-        required this.password});
+      required this.path,
+      required this.h,
+      required this.w,
+      required this.text,
+      required this.password});
   double h, w;
-  String txt,text,password;
+  String txt, text, password;
   Widget path;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        if(text==""){
+        if (text == "") {
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
             content: Text("Please enter Email or Phone Number"),
-            
           ));
-        }
-        else if (password==""){
+        } else if (password == "") {
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
             content: Text("Please enter password"),
           ));
-        }
-        else
-          Navigator.push(context, MaterialPageRoute(builder: (context) => path));
+        } else
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => path));
+
       },
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 30),
@@ -248,8 +276,6 @@ class BottomButton extends StatelessWidget {
     );
   }
 }
-
-
 
 List<BoxShadow> Shadow = [
   BoxShadow(color: Colors.grey[300]!, blurRadius: 10, offset: Offset(0, 10))

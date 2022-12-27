@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:handsforhunger/Registration.dart';
 import 'package:handsforhunger/welcomeScreen.dart';
 
 bool pressed = false;
@@ -9,13 +10,12 @@ class LogInPage extends StatefulWidget {
   const LogInPage({super.key});
 
   @override
-
   State<LogInPage> createState() => _LogInPageState();
 }
 
 class _LogInPageState extends State<LogInPage> {
-  String login_email="";
-  String login_password="";
+  String login_email = "";
+  String login_password = "";
   @override
   Widget build(BuildContext context) {
     double h = (MediaQuery.of(context).size.height),
@@ -64,10 +64,8 @@ class _LogInPageState extends State<LogInPage> {
                 child: Center(
                   child: TextFormField(
                     onChanged: (value) {
-                        login_email = value;
-                      }
-
-                    ,
+                      login_email = value;
+                    },
                     decoration: InputDecoration(
                         border: InputBorder.none,
                         hintText: 'Email or Phone Number',
@@ -121,9 +119,12 @@ class _LogInPageState extends State<LogInPage> {
                 height: h / 15,
               ),
               BottomButton(
-
-                  txt: 'Login', path: LogInPage(), h: h, w: w , text : login_email , password: login_password,
-
+                txt: 'Login',
+                path: LogInPage(),
+                h: h,
+                w: w,
+                text: login_email,
+                password: login_password,
               ),
               SizedBox(
                 height: h / 30,
@@ -163,6 +164,22 @@ class _LogInPageState extends State<LogInPage> {
               SizedBox(
                 height: h / 40,
               ),
+              GestureDetector(
+                child: CircleAvatar(
+                  radius: 23.2,
+                  backgroundColor: Colors.black,
+                  child: CircleAvatar(
+                    radius: 23,
+                    child: Image.asset(
+                      'images/google_logo.png',
+                    ),
+                    backgroundColor: Color(0xffFAFAFC),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: h / 100,
+              ),
               Text(
                 'Sign Up With Google',
                 style: GoogleFonts.inter(
@@ -173,23 +190,28 @@ class _LogInPageState extends State<LogInPage> {
               SizedBox(
                 height: h / 40,
               ),
-              RichText(
-                text: TextSpan(
-                    text: 'Don\'t have an account? ',
-                    style: GoogleFonts.inter(
-                        fontSize: h / 60,
-                        fontWeight: FontWeight.w600,
-                        color: Color(0xff67698F)),
-                    children: [
-                      
-                      TextSpan(
-                        text: 'Sign up!',
-                        style: GoogleFonts.poppins(
-                            fontSize: h / 60,
-                            fontWeight: FontWeight.w800,
-                            color: Color(0xff67698E)),
-                      )
-                    ]),
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => Registpage()));
+                },
+                child: RichText(
+                  text: TextSpan(
+                      text: 'Don\'t have an account? ',
+                      style: GoogleFonts.inter(
+                          fontSize: h / 60,
+                          fontWeight: FontWeight.w600,
+                          color: Color(0xff67698F)),
+                      children: [
+                        TextSpan(
+                          text: 'Sign up!',
+                          style: GoogleFonts.poppins(
+                              fontSize: h / 60,
+                              fontWeight: FontWeight.w800,
+                              color: Color(0xff67698E)),
+                        )
+                      ]),
+                ),
               ),
             ],
           ),
@@ -197,37 +219,34 @@ class _LogInPageState extends State<LogInPage> {
       ),
     );
   }
-
 }
-
 
 class BottomButton extends StatelessWidget {
   BottomButton(
       {required this.txt,
-        required this.path,
-        required this.h,
-        required this.w,
-        required this.text,
-        required this.password});
+      required this.path,
+      required this.h,
+      required this.w,
+      required this.text,
+      required this.password});
   double h, w;
-  String txt,text,password;
+  String txt, text, password;
   Widget path;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        if(text==""){
+        if (text == "") {
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
             content: Text("Please enter Email or Phone Number"),
           ));
-        }
-        else if (password==""){
+        } else if (password == "") {
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
             content: Text("Please enter password"),
           ));
-        }
-        else
-        Navigator.push(context, MaterialPageRoute(builder: (context) => path));
+        } else
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => path));
       },
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 30),
@@ -264,6 +283,3 @@ List<BoxShadow> shadow = [
 List<BoxShadow> Shadow = [
   BoxShadow(color: Colors.grey[300]!, blurRadius: 10, offset: Offset(0, 10))
 ];
-
-
-
