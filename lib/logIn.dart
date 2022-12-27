@@ -9,10 +9,13 @@ class LogInPage extends StatefulWidget {
   const LogInPage({super.key});
 
   @override
+
   State<LogInPage> createState() => _LogInPageState();
 }
 
 class _LogInPageState extends State<LogInPage> {
+  String login_email="";
+  String login_password="";
   @override
   Widget build(BuildContext context) {
     double h = (MediaQuery.of(context).size.height),
@@ -60,7 +63,11 @@ class _LogInPageState extends State<LogInPage> {
                 ),
                 child: Center(
                   child: TextFormField(
-                    onChanged: (value) {},
+                    onChanged: (value) {
+                        login_email = value;
+                      }
+
+                    ,
                     decoration: InputDecoration(
                         border: InputBorder.none,
                         hintText: 'Email or Phone Number',
@@ -86,7 +93,9 @@ class _LogInPageState extends State<LogInPage> {
                 ),
                 child: Center(
                   child: TextFormField(
-                    onChanged: (value) {},
+                    onChanged: (value) {
+                      login_password = value;
+                    },
                     decoration: InputDecoration(
                       border: InputBorder.none,
                       hintText: 'Password',
@@ -111,7 +120,11 @@ class _LogInPageState extends State<LogInPage> {
               SizedBox(
                 height: h / 15,
               ),
-              BottomButton(txt: 'Login', path: LogInPage(), h: h, w: w),
+              BottomButton(
+
+                  txt: 'Login', path: LogInPage(), h: h, w: w , text : login_email , password: login_password,
+
+              ),
               SizedBox(
                 height: h / 30,
               ),
@@ -184,9 +197,73 @@ class _LogInPageState extends State<LogInPage> {
       ),
     );
   }
+
 }
+
+
+class BottomButton extends StatelessWidget {
+  BottomButton(
+      {required this.txt,
+        required this.path,
+        required this.h,
+        required this.w,
+        required this.text,
+        required this.password});
+  double h, w;
+  String txt,text,password;
+  Widget path;
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        if(text==""){
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: Text("Please enter Email or Phone Number"),
+          ));
+        }
+        else if (password==""){
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: Text("Please enter password"),
+          ));
+        }
+        else
+        Navigator.push(context, MaterialPageRoute(builder: (context) => path));
+      },
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 30),
+        child: Container(
+          margin: EdgeInsets.only(top: 20),
+          height: h / 14,
+          width: w / 1.18,
+          child: Center(
+            child: Text(
+              txt,
+              style: GoogleFonts.poppins(
+                  fontSize: w / 24.5,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.white),
+            ),
+          ),
+          decoration: BoxDecoration(
+              gradient: LinearGradient(
+                  colors: [Color(0xffFFDA94), Color(0xffFF942F)],
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter),
+              borderRadius: BorderRadius.circular(12),
+              color: Color(0xff4BB0FE)),
+        ),
+      ),
+    );
+  }
+}
+
+List<BoxShadow> shadow = [
+  BoxShadow(color: Colors.grey, blurRadius: 10, offset: Offset(0, 10))
+];
 
 List<BoxShadow> Shadow = [
   BoxShadow(color: Colors.grey[300]!, blurRadius: 10, offset: Offset(0, 10))
 ];
+
+
 
