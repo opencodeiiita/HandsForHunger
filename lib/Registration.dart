@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:handsforhunger/Registration.dart';
+import 'package:handsforhunger/logIn.dart';
 import 'package:handsforhunger/welcomeScreen.dart';
 
 bool pressed = false;
 Icon Icn = Icon(Icons.remove_red_eye);
 
-class LogInPage extends StatefulWidget {
-  const LogInPage({super.key});
+class Registpage extends StatefulWidget {
+  const Registpage({super.key});
 
   @override
-  State<LogInPage> createState() => _LogInPageState();
+  State<Registpage> createState() => _RegistpageState();
 }
 
-class _LogInPageState extends State<LogInPage> {
+class _RegistpageState extends State<Registpage> {
+  String _text = "";
+  String _password = "";
   @override
   Widget build(BuildContext context) {
     double h = (MediaQuery.of(context).size.height),
@@ -39,11 +41,11 @@ class _LogInPageState extends State<LogInPage> {
                     alignment: Alignment.centerLeft,
                     child: Text(
                       textAlign: TextAlign.left,
-                      'Log In',
+                      'Sign Up',
                       style: GoogleFonts.poppins(
-                          fontSize: w / 18,
+                          fontSize: w / 16,
                           fontWeight: FontWeight.w600,
-                          color: Color(0xff4B56FE)),
+                          color: Color(0xffFFBA25)),
                     ),
                   ),
                 ],
@@ -53,7 +55,7 @@ class _LogInPageState extends State<LogInPage> {
               ),
               Container(
                 margin: EdgeInsets.symmetric(horizontal: h / 80),
-                height: h / 17,
+                height: h / 13,
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(15),
@@ -61,7 +63,9 @@ class _LogInPageState extends State<LogInPage> {
                 ),
                 child: Center(
                   child: TextFormField(
-                    onChanged: (value) {},
+                    onChanged: (value) {
+                      _text = value;
+                    },
                     decoration: InputDecoration(
                         border: InputBorder.none,
                         hintText: 'Email or Phone Number',
@@ -79,7 +83,7 @@ class _LogInPageState extends State<LogInPage> {
               ),
               Container(
                 margin: EdgeInsets.symmetric(horizontal: h / 80),
-                height: h / 17,
+                height: h / 13,
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(15),
@@ -87,7 +91,9 @@ class _LogInPageState extends State<LogInPage> {
                 ),
                 child: Center(
                   child: TextFormField(
-                    onChanged: (value) {},
+                    onChanged: (value) {
+                      _password = value;
+                    },
                     decoration: InputDecoration(
                       border: InputBorder.none,
                       hintText: 'Password',
@@ -112,54 +118,19 @@ class _LogInPageState extends State<LogInPage> {
               SizedBox(
                 height: h / 15,
               ),
-              Text(
-                'or',
-                style: GoogleFonts.inter(
-                    fontSize: w / 28, color: Color(0xffABAEB0)),
+              BottomButton(
+                txt: 'Login',
+                path: Registpage(),
+                h: h,
+                w: w,
+                text: _text,
+                password: _password,
               ),
               SizedBox(
                 height: h / 20,
-              ),
-              // BottomButton(txt: 'Get Started', path: LogInPage(), h: h, w: w),
-              GestureDetector(
-                onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => LogInPage()));
-                },
-                child: Container(
-                  margin: EdgeInsets.only(top: 25),
-                  height: h / 16,
-                  width: w / 1.18,
-                  child: Center(
-                    child: Text(
-                      'Get Started',
-                      style: GoogleFonts.poppins(
-                          fontSize: w / 24.5,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.white),
-                    ),
-                  ),
-                  decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                          colors: [Color(0xff4BB0FE), Color(0xff4B56FE)],
-                          begin: Alignment.topCenter,
-                          end: Alignment.bottomCenter),
-                      borderRadius: BorderRadius.circular(12),
-                      color: Color(0xff4BB0FE)),
-                ),
               ),
               SizedBox(
                 height: h / 30,
-              ),
-              Text(
-                'Forgot Password',
-                style: GoogleFonts.poppins(
-                    fontSize: w / 28,
-                    fontWeight: FontWeight.w500,
-                    color: Color(0xff67698F)),
-              ),
-              SizedBox(
-                height: h / 20,
               ),
               Container(
                 padding: EdgeInsets.symmetric(horizontal: w / 20),
@@ -167,7 +138,7 @@ class _LogInPageState extends State<LogInPage> {
                   children: [
                     SizedBox(
                         width: w / 3,
-                        height: h / 50,
+                        height: h / 60,
                         child: Divider(
                           thickness: 1.5,
                         )),
@@ -194,37 +165,111 @@ class _LogInPageState extends State<LogInPage> {
                 height: h / 40,
               ),
               GestureDetector(
-                onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => Registpage()));
-                },
-                child: Container(
-                  child: RichText(
-                    text: TextSpan(
-                        text: 'Don\'t have an account? ',
-                        style: GoogleFonts.inter(
-                            fontSize: h / 60,
-                            fontWeight: FontWeight.w600,
-                            color: Color(0xff67698F)),
-                        children: [
-                          TextSpan(
-                            text: 'Sign up!',
-                            style: GoogleFonts.poppins(
-                                fontSize: h / 60,
-                                fontWeight: FontWeight.w800,
-                                color: Color(0xff67698E)),
-                          )
-                        ]),
+                child: CircleAvatar(
+                  radius: 23.2,
+                  backgroundColor: Colors.black,
+                  child: CircleAvatar(
+                    radius: 23,
+                    child: Image.asset(
+                      'images/google_logo.png',
+                    ),
+                    backgroundColor: Color(0xffFAFAFC),
                   ),
                 ),
               ),
-
-              // ],
-              // ),
-              // ),
-              // )
+              SizedBox(
+                height: h / 100,
+              ),
+              Text(
+                'Sign Up With Google',
+                style: GoogleFonts.inter(
+                    fontSize: w / 25,
+                    fontWeight: FontWeight.w400,
+                    color: Color(0xff67698F)),
+              ),
+              SizedBox(
+                height: h / 40,
+              ),
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => LogInPage()));
+                },
+                child: RichText(
+                  text: TextSpan(
+                      text: 'Have an account? ',
+                      style: GoogleFonts.inter(
+                          fontSize: h / 54,
+                          fontWeight: FontWeight.w600,
+                          color: Color(0xff67698F)),
+                      children: [
+                        TextSpan(
+                          text: 'Log In!',
+                          style: GoogleFonts.poppins(
+                              fontSize: h / 54,
+                              fontWeight: FontWeight.w800,
+                              color: Color(0xff67698E)),
+                        )
+                      ]),
+                ),
+              ),
             ],
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class BottomButton extends StatelessWidget {
+  BottomButton(
+      {required this.txt,
+      required this.path,
+      required this.h,
+      required this.w,
+      required this.text,
+      required this.password});
+  double h, w;
+  String txt, text, password;
+  Widget path;
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        if (text == "") {
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: Text("Please enter Email or Phone Number"),
+          ));
+        } else if (password == "") {
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: Text("Please enter password"),
+          ));
+        } else
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => path));
+      },
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 30),
+        child: Container(
+          margin: EdgeInsets.only(top: 20),
+          height: h / 14,
+          width: w / 1.18,
+          child: Center(
+            child: Text(
+              txt,
+              style: GoogleFonts.poppins(
+                  fontSize: w / 24.5,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.white),
+            ),
+          ),
+          decoration: BoxDecoration(
+              gradient: LinearGradient(
+                  colors: [Color(0xffFFDA94), Color(0xffFF942F)],
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter),
+              borderRadius: BorderRadius.circular(12),
+              color: Color(0xff4BB0FE)),
         ),
       ),
     );
