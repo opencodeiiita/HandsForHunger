@@ -167,28 +167,52 @@ class _LogInPageState extends State<LogInPage> {
                 height: h / 40,
               ),
               GestureDetector(
+                child: CircleAvatar(
+                  radius: 23.2,
+                  backgroundColor: Colors.black,
+                  child: CircleAvatar(
+                    radius: 23,
+                    child: Image.asset(
+                      'images/google_logo.png',
+                    ),
+                    backgroundColor: Color(0xffFAFAFC),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: h / 100,
+              ),
+              Text(
+                'Sign Up With Google',
+                style: GoogleFonts.inter(
+                    fontSize: w / 25,
+                    fontWeight: FontWeight.w400,
+                    color: Color(0xff67698F)),
+              ),
+              SizedBox(
+                height: h / 40,
+              ),
+              GestureDetector(
                 onTap: () {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => Registpage()));
                 },
-                child: Container(
-                  child: RichText(
-                    text: TextSpan(
-                        text: 'Don\'t have an account? ',
-                        style: GoogleFonts.inter(
-                            fontSize: h / 60,
-                            fontWeight: FontWeight.w600,
-                            color: Color(0xff67698F)),
-                        children: [
-                          TextSpan(
-                            text: 'Sign up!',
-                            style: GoogleFonts.poppins(
-                                fontSize: h / 60,
-                                fontWeight: FontWeight.w800,
-                                color: Color(0xff67698E)),
-                          )
-                        ]),
-                  ),
+                child: RichText(
+                  text: TextSpan(
+                      text: 'Don\'t have an account? ',
+                      style: GoogleFonts.inter(
+                          fontSize: h / 60,
+                          fontWeight: FontWeight.w600,
+                          color: Color(0xff67698F)),
+                      children: [
+                        TextSpan(
+                          text: 'Sign up!',
+                          style: GoogleFonts.poppins(
+                              fontSize: h / 60,
+                              fontWeight: FontWeight.w800,
+                              color: Color(0xff67698E)),
+                        )
+                      ]),
                 ),
               ),
 
