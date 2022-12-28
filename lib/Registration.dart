@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:handsforhunger/logIn.dart';
 import 'package:handsforhunger/welcomeScreen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 bool pressed = false;
 Icon Icn = Icon(Icons.remove_red_eye);
@@ -14,8 +15,9 @@ class Registpage extends StatefulWidget {
 }
 
 class _RegistpageState extends State<Registpage> {
-  String _text="";
-  String _password="";
+ late String _text;
+ late String _password;
+
   @override
   Widget build(BuildContext context) {
     double h = (MediaQuery.of(context).size.height),
@@ -64,7 +66,7 @@ class _RegistpageState extends State<Registpage> {
                 child: Center(
                   child: TextFormField(
                     onChanged: (value) {
-                      _text=value;
+                      _text = value;
                     },
                     decoration: InputDecoration(
                         border: InputBorder.none,
@@ -92,7 +94,7 @@ class _RegistpageState extends State<Registpage> {
                 child: Center(
                   child: TextFormField(
                     onChanged: (value) {
-                      _password=value;
+                      _password = value;
                     },
                     decoration: InputDecoration(
                       border: InputBorder.none,
@@ -119,8 +121,8 @@ class _RegistpageState extends State<Registpage> {
                 height: h / 15,
               ),
               BottomButton(
-                txt: 'Login',
-                path: Registpage(),
+                txt: 'Sign Up',
+                path: LogInPage(),
                 h: h,
                 w: w,
                 text: _text,
@@ -222,6 +224,7 @@ class _RegistpageState extends State<Registpage> {
 }
 
 class BottomButton extends StatelessWidget {
+  // ignore: non_constant_identifier_names
   BottomButton(
       {required this.txt,
       required this.path,
@@ -232,22 +235,35 @@ class BottomButton extends StatelessWidget {
   double h, w;
   String txt, text, password;
   Widget path;
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        if (text == "") {
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            content: Text("Please enter Email or Phone Number"),
-          ));
-        } else if (password == "") {
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            content: Text("Please enter password"),
-          ));
-        } else
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => path));
+      onTap: () async {
+        try {
+          final newuser = await FirebaseAuth.instance
+              .createUserWithEmailAndPassword(email: text, password: password);
 
+          if (text == "") {
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              content: Text("Please enter Email or Phone Number"),
+            ));
+          } else if (password == "") {
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              content: Text("Please enter password"),
+            ));
+
+          } else 
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => path));
+            } catch (e) {
+                 print(e);
+                 ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(content: Text(e.toString()),
+                          backgroundColor: Colors.red,
+                        ),
+                      );
+        }
       },
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 30),
@@ -255,6 +271,14 @@ class BottomButton extends StatelessWidget {
           margin: EdgeInsets.only(top: 20),
           height: h / 14,
           width: w / 1.18,
+          decoration: BoxDecoration(
+              gradient: const LinearGradient(
+                 
+                  colors: [Color(0xffFFDA94), Color(0xffFF942F)],
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter),
+              borderRadius: BorderRadius.circular(12),
+              color: Color(0xff4BB0FE)),
           child: Center(
             child: Text(
               txt,
@@ -264,13 +288,6 @@ class BottomButton extends StatelessWidget {
                   color: Colors.white),
             ),
           ),
-          decoration: BoxDecoration(
-              gradient: LinearGradient(
-                  colors: [Color(0xffFFDA94), Color(0xffFF942F)],
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter),
-              borderRadius: BorderRadius.circular(12),
-              color: Color(0xff4BB0FE)),
         ),
       ),
     );
@@ -280,4 +297,3 @@ class BottomButton extends StatelessWidget {
 List<BoxShadow> Shadow = [
   BoxShadow(color: Colors.grey[300]!, blurRadius: 10, offset: Offset(0, 10))
 ];
-
