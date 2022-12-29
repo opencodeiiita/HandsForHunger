@@ -4,10 +4,16 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sizer/sizer.dart';
 
-class DonorPage extends StatelessWidget {
+class DonorPage extends StatefulWidget {
   const DonorPage({super.key});
 
   @override
+  State<DonorPage> createState() => _DonorPageState();
+}
+
+class _DonorPageState extends State<DonorPage> {
+  @override
+  double val = 10;
   Widget build(BuildContext context) {
     double h = (MediaQuery.of(context).size.height),
         w = (MediaQuery.of(context).size.width);
@@ -49,7 +55,6 @@ class DonorPage extends StatelessWidget {
                     ],
                   ),
                   Container(
-                    margin: EdgeInsets.only(bottom: h / 100),
                     child: Row(
                       children: [
                         SizedBox(
@@ -63,36 +68,34 @@ class DonorPage extends StatelessWidget {
                       ],
                     ),
                   ),
-                  Row(
-                    children: [
-                      SizedBox(
-                        width: w / 25,
-                      ),
-                      Text(
-                        'IIIT Allahabad',
-                        style: GoogleFonts.poppins(
-                            fontSize: 12, fontWeight: FontWeight.w300),
-                      ),
-                    ],
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: w / 25),
+                    child: TextFormField(
+                      style: GoogleFonts.poppins(
+                          fontSize: 12, fontWeight: FontWeight.w300),
+                    ),
                   ),
-                  Divider(
-                    thickness: 2,
+                  Container(
+                    margin: EdgeInsets.only(top: h / 100),
+                    child: Row(
+                      children: [
+                        SizedBox(
+                          width: w / 25,
+                        ),
+                        Text(
+                          'Contact No.',
+                          style: GoogleFonts.poppins(
+                              fontSize: 14, fontWeight: FontWeight.w400),
+                        ),
+                      ],
+                    ),
                   ),
-                  Txt(h: h, w: w, t: "Contact No."),
-                  Row(
-                    children: [
-                      SizedBox(
-                        width: w / 25,
-                      ),
-                      Text(
-                        '+91 9876543210',
-                        style: GoogleFonts.poppins(
-                            fontSize: 12, fontWeight: FontWeight.w300),
-                      ),
-                    ],
-                  ),
-                  Divider(
-                    thickness: 2,
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: w / 25),
+                    child: TextFormField(
+                      style: GoogleFonts.poppins(
+                          fontSize: 12, fontWeight: FontWeight.w300),
+                    ),
                   ),
                   Txt(h: h, w: w, t: "Veg/Non Veg"),
                   Row(
@@ -153,7 +156,13 @@ class DonorPage extends StatelessWidget {
                   Divider(
                     thickness: 2,
                   ),
-                  Txt(h: h, w: w, t: "Quantity : 500 persons"),
+                  Row(
+                    children: [
+                      Txt(h: h, w: w, t: "Quantity :"),
+                      Txt(h: h, w: w, t: val.toInt().toString()),
+                      Txt(h: h, w: w, t: "persons"),
+                    ],
+                  ),
                   SliderTheme(
                     data: SliderTheme.of(context).copyWith(
                       activeTrackColor: Color(0xffffc648),
@@ -165,7 +174,17 @@ class DonorPage extends StatelessWidget {
                       overlayShape:
                           RoundSliderOverlayShape(overlayRadius: 24.0),
                     ),
-                    child: Slider(value: 1, onChanged: (i) {}),
+                    child: Slider(
+                      value: val,
+                      min: 20,
+                      max: 2000,
+                      onChanged: (double newvalue) {
+                        setState(() {
+                          print(newvalue);
+                        });
+                        val = newvalue;
+                      },
+                    ),
                   ),
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: w / 18),
