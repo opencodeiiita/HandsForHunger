@@ -4,6 +4,8 @@ import 'package:handsforhunger/logIn.dart';
 import 'package:handsforhunger/welcomeScreen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
+import 'donor.dart';
+
 bool pressed = false;
 Icon Icn = Icon(Icons.remove_red_eye);
 
@@ -15,8 +17,8 @@ class Registpage extends StatefulWidget {
 }
 
 class _RegistpageState extends State<Registpage> {
- late String _text;
- late String _password;
+  late String _text="";
+  late String _password="";
 
   @override
   Widget build(BuildContext context) {
@@ -70,7 +72,7 @@ class _RegistpageState extends State<Registpage> {
                     },
                     decoration: InputDecoration(
                         border: InputBorder.none,
-                        hintText: 'Email or Phone Number',
+                        hintText: 'Email',
                         hintStyle: GoogleFonts.poppins(
                             fontSize: w / 25, color: Colors.grey[500]),
                         prefixIcon: Icon(
@@ -122,7 +124,7 @@ class _RegistpageState extends State<Registpage> {
               ),
               BottomButton(
                 txt: 'Sign Up',
-                path: LogInPage(),
+                path: DonorPage(),
                 h: h,
                 w: w,
                 text: _text,
@@ -227,11 +229,11 @@ class BottomButton extends StatelessWidget {
   // ignore: non_constant_identifier_names
   BottomButton(
       {required this.txt,
-      required this.path,
-      required this.h,
-      required this.w,
-      required this.text,
-      required this.password});
+        required this.path,
+        required this.h,
+        required this.w,
+        required this.text,
+        required this.password});
   double h, w;
   String txt, text, password;
   Widget path;
@@ -253,16 +255,16 @@ class BottomButton extends StatelessWidget {
               content: Text("Please enter password"),
             ));
 
-          } else 
+          } else
             Navigator.push(
                 context, MaterialPageRoute(builder: (context) => path));
-            } catch (e) {
-                 print(e);
-                 ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text(e.toString()),
-                          backgroundColor: Colors.red,
-                        ),
-                      );
+        } catch (e) {
+          print(e);
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text(e.toString()),
+              backgroundColor: Colors.red,
+            ),
+          );
         }
       },
       child: Padding(
@@ -273,7 +275,7 @@ class BottomButton extends StatelessWidget {
           width: w / 1.18,
           decoration: BoxDecoration(
               gradient: const LinearGradient(
-                 
+
                   colors: [Color(0xffFFDA94), Color(0xffFF942F)],
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter),

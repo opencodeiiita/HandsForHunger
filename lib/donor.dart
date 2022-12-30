@@ -13,7 +13,7 @@ class DonorPage extends StatefulWidget {
 
 class _DonorPageState extends State<DonorPage> {
   @override
-  double val = 10;
+  double val = 30;
   Widget build(BuildContext context) {
     double h = (MediaQuery.of(context).size.height),
         w = (MediaQuery.of(context).size.width);
@@ -29,29 +29,29 @@ class _DonorPageState extends State<DonorPage> {
               fit: BoxFit.fill,
             ),
           ),
+
           SingleChildScrollView(
             child: Container(
               padding: EdgeInsets.only(
                 left: w / 20,
                 right: w / 20,
-                top: h / 5.9,
+                top: h / 23,
               ),
               child: Column(
                 children: [
                   Row(
                     children: [
-                      Text(
-                        'Donate Food Details',
-                        style: GoogleFonts.poppins(
-                            fontSize: 25,
-                            // decoration: TextDirection.,
-                            fontWeight: FontWeight.w600,
-                            color: Color(0xffFFC648)),
+                      Padding(
+                        padding: const EdgeInsets.all(14.0),
+                        child: Text(
+                          'Food Details',
+                          style: GoogleFonts.poppins(
+                              fontSize: 26,
+                              // decoration: TextDirection.,
+                              fontWeight: FontWeight.w700,
+                              color: Colors.white),
+                        ),
                       ),
-                      // Image.asset(
-                      //     width: w / 4,
-                      //     height: h / 6,
-                      //     'images/WelcomeScreenImage.png')
                     ],
                   ),
                   Container(
@@ -176,8 +176,8 @@ class _DonorPageState extends State<DonorPage> {
                     ),
                     child: Slider(
                       value: val,
-                      min: 20,
-                      max: 2000,
+                      min: 10,
+                      max: 1000,
                       onChanged: (double newvalue) {
                         setState(() {
                           print(newvalue);
@@ -191,13 +191,13 @@ class _DonorPageState extends State<DonorPage> {
                     child: Row(
                       children: [
                         Text(
-                          'Min 20',
+                          'Min 10',
                           style: GoogleFonts.poppins(
                               fontSize: 10, fontWeight: FontWeight.w200),
                         ),
                         Expanded(child: Container()),
                         Text(
-                          'Max 2000',
+                          'Max 1000',
                           style: GoogleFonts.poppins(
                               fontSize: 10, fontWeight: FontWeight.w200),
                         )
