@@ -1,4 +1,5 @@
 import 'dart:ffi';
+import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -12,12 +13,30 @@ class DonorPage extends StatefulWidget {
 }
 
 class _DonorPageState extends State<DonorPage> {
+  bool i = true, j = false, k = false;
+  DateTime selectedDate = DateTime.now();
+  Future<Null> _selectDate(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+            context: context,
+            initialDate: selectedDate,
+            firstDate: DateTime.now(),
+            lastDate: DateTime(2025))
+        .then((value) {
+      setState(() {
+        selectedDate = value!;
+      });
+    });
+
+    if (picked != null && picked != selectedDate) {
+      selectedDate = picked;
+    }
+  }
+
   @override
-  double val = 10;
+  double val = 20;
   Widget build(BuildContext context) {
     double h = (MediaQuery.of(context).size.height),
         w = (MediaQuery.of(context).size.width);
-    bool i = false;
     return Scaffold(
       body: Stack(
         children: [
@@ -48,10 +67,6 @@ class _DonorPageState extends State<DonorPage> {
                             fontWeight: FontWeight.w600,
                             color: Color(0xffFFC648)),
                       ),
-                      // Image.asset(
-                      //     width: w / 4,
-                      //     height: h / 6,
-                      //     'images/WelcomeScreenImage.png')
                     ],
                   ),
                   Container(
@@ -107,7 +122,17 @@ class _DonorPageState extends State<DonorPage> {
                       SizedBox(
                         width: w / 10,
                       ),
-                      Checkbox(value: i, onChanged: (val) {}),
+                      Checkbox(
+                          value: i,
+                          onChanged: (val) {
+                            setState(() {
+                              i = val!;
+                              print(i);
+                              if (i == true && j == true) {
+                                j = false;
+                              }
+                            });
+                          }),
                       SizedBox(
                         width: w / 10,
                       ),
@@ -115,7 +140,16 @@ class _DonorPageState extends State<DonorPage> {
                       SizedBox(
                         width: w / 10,
                       ),
-                      Checkbox(value: i, onChanged: (val) {}),
+                      Checkbox(
+                          value: j,
+                          onChanged: (val) {
+                            setState(() {
+                              j = val!;
+                              if (i == true && j == true) {
+                                i = false;
+                              }
+                            });
+                          }),
                       SizedBox(
                         width: w / 10,
                       ),
@@ -130,25 +164,37 @@ class _DonorPageState extends State<DonorPage> {
                       SizedBox(
                         width: w / 25,
                       ),
-                      Container(
-                        padding: EdgeInsets.symmetric(horizontal: w / 25),
-                        height: h / 25,
-                        width: w / 2.5,
-                        decoration: BoxDecoration(
-                            color: Color(0xffFFC648),
-                            borderRadius: BorderRadius.circular(10)),
-                        child: Row(
-                          children: [
-                            Text(
-                              'DD/MM/YY',
-                              style: GoogleFonts.inter(
-                                  fontSize: 14, fontWeight: FontWeight.w400),
-                            ),
-                            SizedBox(
-                              width: w / 40,
-                            ),
-                            Icon(Icons.calendar_month)
-                          ],
+                      GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            _selectDate(context);
+                            print('object');
+                          });
+                        },
+                        child: Container(
+                          padding: EdgeInsets.symmetric(horizontal: w / 25),
+                          height: h / 25,
+                          width: w / 2.5,
+                          decoration: BoxDecoration(
+                              color: Color(0xffFFC648),
+                              borderRadius: BorderRadius.circular(10)),
+                          child: Row(
+                            children: [
+                              Text(
+                                selectedDate.day.toString() +
+                                    '/' +
+                                    selectedDate.month.toString() +
+                                    '/' +
+                                    selectedDate.year.toString(),
+                                style: GoogleFonts.inter(
+                                    fontSize: 14, fontWeight: FontWeight.w400),
+                              ),
+                              SizedBox(
+                                width: w / 40,
+                              ),
+                              Icon(Icons.calendar_month)
+                            ],
+                          ),
                         ),
                       ),
                     ],
@@ -180,9 +226,8 @@ class _DonorPageState extends State<DonorPage> {
                       max: 2000,
                       onChanged: (double newvalue) {
                         setState(() {
-                          print(newvalue);
+                          val = newvalue;
                         });
-                        val = newvalue;
                       },
                     ),
                   ),
@@ -231,7 +276,13 @@ class _DonorPageState extends State<DonorPage> {
                   ),
                   Row(
                     children: [
-                      Checkbox(value: i, onChanged: (i) {}),
+                      Checkbox(
+                          value: k,
+                          onChanged: (val) {
+                            setState(() {
+                              k = val!;
+                            });
+                          }),
                       Text(
                         'I assure that the food quality and hygiene has been \nmaintained',
                         style: GoogleFonts.poppins(
