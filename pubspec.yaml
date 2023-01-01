@@ -50,6 +50,10 @@ dev_dependencies:
   firebase_core: ^2.4.0
   cloud_firestore: ^4.2.0
   lottie:
+  firebase_database: 
+  firebase_database_web:
+  firebase_crashlytics:
+  firebase_analytics:
 
 
   google_fonts:

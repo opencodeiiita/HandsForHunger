@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sizer/sizer.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class DonorPage extends StatefulWidget {
   const DonorPage({super.key});
@@ -10,7 +11,14 @@ class DonorPage extends StatefulWidget {
 }
 
 class _DonorPageState extends State<DonorPage> {
-  bool i = true, j = false, k = false;
+  final locationController = TextEditingController(),
+      contactController = TextEditingController();
+  late var location = "", contactNo = "";
+  String Veg = "";
+  double quantity = 20;
+  bool veg = true, nonveg = false, k = false;
+  int latitude = 0, longitude = 0;
+  int capacity = 20;
   DateTime selectedDate = DateTime.now();
   Future<Null> _selectDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
@@ -30,7 +38,6 @@ class _DonorPageState extends State<DonorPage> {
   }
 
   @override
-  double val = 20;
   Widget build(BuildContext context) {
     double h = (MediaQuery.of(context).size.height),
         w = (MediaQuery.of(context).size.width);
@@ -83,6 +90,10 @@ class _DonorPageState extends State<DonorPage> {
                   Container(
                     padding: EdgeInsets.symmetric(horizontal: w / 25),
                     child: TextFormField(
+                      onChanged: ((value) {
+                        location = locationController.text;
+                      }),
+                      controller: locationController,
                       style: GoogleFonts.poppins(
                           fontSize: 12, fontWeight: FontWeight.w300),
                     ),
@@ -105,6 +116,10 @@ class _DonorPageState extends State<DonorPage> {
                   Container(
                     padding: EdgeInsets.symmetric(horizontal: w / 25),
                     child: TextFormField(
+                      controller: contactController,
+                      onChanged: (value) {
+                        contactNo = contactController.text;
+                      },
                       style: GoogleFonts.poppins(
                           fontSize: 12, fontWeight: FontWeight.w300),
                     ),
@@ -120,14 +135,14 @@ class _DonorPageState extends State<DonorPage> {
                         width: w / 10,
                       ),
                       Checkbox(
-                          value: i,
+                          value: veg,
                           onChanged: (val) {
                             setState(() {
-                              i = val!;
-                              print(i);
-                              if (i == true && j == true) {
-                                j = false;
+                              veg = val!;
+                              if (veg == true && nonveg == true) {
+                                nonveg = false;
                               }
+                              Veg = "veg";
                             });
                           }),
                       SizedBox(
@@ -138,13 +153,14 @@ class _DonorPageState extends State<DonorPage> {
                         width: w / 10,
                       ),
                       Checkbox(
-                          value: j,
+                          value: nonveg,
                           onChanged: (val) {
                             setState(() {
-                              j = val!;
-                              if (i == true && j == true) {
-                                i = false;
+                              nonveg = val!;
+                              if (veg == true && nonveg == true) {
+                                veg = false;
                               }
+                              Veg = "nonveg";
                             });
                           }),
                       SizedBox(
@@ -165,7 +181,6 @@ class _DonorPageState extends State<DonorPage> {
                         onTap: () {
                           setState(() {
                             _selectDate(context);
-                            print('object');
                           });
                         },
                         child: Container(
@@ -202,7 +217,7 @@ class _DonorPageState extends State<DonorPage> {
                   Row(
                     children: [
                       Txt(h: h, w: w, t: "Quantity :"),
-                      Txt(h: h, w: w, t: val.toInt().toString()),
+                      Txt(h: h, w: w, t: quantity.toInt().toString()),
                       Txt(h: h, w: w, t: "persons"),
                     ],
                   ),
@@ -218,12 +233,12 @@ class _DonorPageState extends State<DonorPage> {
                           RoundSliderOverlayShape(overlayRadius: 24.0),
                     ),
                     child: Slider(
-                      value: val,
+                      value: quantity,
                       min: 20,
                       max: 2000,
                       onChanged: (double newvalue) {
                         setState(() {
-                          val = newvalue;
+                          quantity = newvalue;
                         });
                       },
                     ),
@@ -287,17 +302,33 @@ class _DonorPageState extends State<DonorPage> {
                       )
                     ],
                   ),
-                  Container(
-                    height: h / 25,
-                    width: w / 3,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: Color(0xffffc648)),
-                    child: Center(
-                      child: Text(
-                        'Submit',
-                        style: GoogleFonts.poppins(
-                            fontSize: 20, fontWeight: FontWeight.w400),
+                  GestureDetector(
+                    onTap: () {
+                      createUser(
+                        veg: Veg,
+                        date: selectedDate.day.toString() +
+                            '/' +
+                            selectedDate.month.toString() +
+                            '/' +
+                            selectedDate.year.toString() +
+                            '/',
+                        capacity: quantity.toString(),
+                        latitude: latitude.toString(),
+                        longitude: longitude.toString(),
+                      );
+                    },
+                    child: Container(
+                      height: h / 25,
+                      width: w / 3,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Color(0xffffc648)),
+                      child: Center(
+                        child: Text(
+                          'Submit',
+                          style: GoogleFonts.poppins(
+                              fontSize: 20, fontWeight: FontWeight.w400),
+                        ),
                       ),
                     ),
                   )
@@ -341,4 +372,56 @@ class Txt extends StatelessWidget {
       ),
     );
   }
+}
+// Stream<List<User>> readUsers() => FirebaseFirestore.instance
+//     .collection('Inventory')
+//     .snapshots()
+//     .map((snapshot) =>
+//         snapshot.docs.map((doc) => User.fromJson(doc.data())).toList());
+
+Future createUser(
+    {required String capacity,
+    required String date,
+    required String latitude,
+    required String longitude,
+    required String veg}) async {
+  final docUser = FirebaseFirestore.instance.collection('Inventory').doc();
+  final user = User(
+    id: docUser.id,
+    veg: veg,
+    date: date,
+    capacity: capacity,
+    latitude: latitude,
+    longitude: longitude,
+  );
+  final json = user.toJson();
+  await docUser.set(json);
+}
+
+class User {
+  late String id;
+  final String veg, date, capacity, latitude, longitude;
+  User(
+      {this.id = '',
+      required this.veg,
+      required this.date,
+      required this.capacity,
+      required this.longitude,
+      required this.latitude});
+
+  Map<String, dynamic> toJson() => {
+        'userid': id,
+        'veg': veg,
+        'capacity': capacity,
+        'latitude': latitude,
+        'longitude': longitude,
+        'date': date
+      };
+  static User fromJson(Map<String, dynamic> json) => User(
+      id: json['userid'],
+      veg: json['veg'],
+      date: json['date'],
+      capacity: json['capacity'],
+      latitude: json['latitude'],
+      longitude: json['longitude']);
 }
