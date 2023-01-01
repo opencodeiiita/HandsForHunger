@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
             ),
           ),
           duration: 2000,
-          nextScreen: DonorPage()),
+          nextScreen: WelcomeScreen()),
     );
   }
 }

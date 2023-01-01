@@ -38,6 +38,7 @@ class _DonorPageState extends State<DonorPage> {
   }
 
   @override
+  double val = 30;
   Widget build(BuildContext context) {
     double h = (MediaQuery.of(context).size.height),
         w = (MediaQuery.of(context).size.width);
@@ -57,19 +58,22 @@ class _DonorPageState extends State<DonorPage> {
               padding: EdgeInsets.only(
                 left: w / 20,
                 right: w / 20,
-                top: h / 5.9,
+                top: h / 23,
               ),
               child: Column(
                 children: [
                   Row(
                     children: [
-                      Text(
-                        'Donate Food Details',
-                        style: GoogleFonts.poppins(
-                            fontSize: 25,
-                            // decoration: TextDirection.,
-                            fontWeight: FontWeight.w600,
-                            color: Color(0xffFFC648)),
+                      Padding(
+                        padding: const EdgeInsets.all(14.0),
+                        child: Text(
+                          'Food Details',
+                          style: GoogleFonts.poppins(
+                              fontSize: 26,
+                              // decoration: TextDirection.,
+                              fontWeight: FontWeight.w700,
+                              color: Colors.white),
+                        ),
                       ),
                     ],
                   ),
@@ -234,8 +238,8 @@ class _DonorPageState extends State<DonorPage> {
                     ),
                     child: Slider(
                       value: quantity,
-                      min: 20,
-                      max: 2000,
+                      min: 10,
+                      max: 1000,
                       onChanged: (double newvalue) {
                         setState(() {
                           quantity = newvalue;
@@ -248,13 +252,13 @@ class _DonorPageState extends State<DonorPage> {
                     child: Row(
                       children: [
                         Text(
-                          'Min 20',
+                          'Min 10',
                           style: GoogleFonts.poppins(
                               fontSize: 10, fontWeight: FontWeight.w200),
                         ),
                         Expanded(child: Container()),
                         Text(
-                          'Max 2000',
+                          'Max 1000',
                           style: GoogleFonts.poppins(
                               fontSize: 10, fontWeight: FontWeight.w200),
                         )
@@ -310,9 +314,8 @@ class _DonorPageState extends State<DonorPage> {
                             '/' +
                             selectedDate.month.toString() +
                             '/' +
-                            selectedDate.year.toString() +
-                            '/',
-                        capacity: quantity.toString(),
+                            selectedDate.year.toString(),
+                        capacity: quantity.toInt().toString(),
                         latitude: latitude.toString(),
                         longitude: longitude.toString(),
                       );
@@ -373,11 +376,6 @@ class Txt extends StatelessWidget {
     );
   }
 }
-// Stream<List<User>> readUsers() => FirebaseFirestore.instance
-//     .collection('Inventory')
-//     .snapshots()
-//     .map((snapshot) =>
-//         snapshot.docs.map((doc) => User.fromJson(doc.data())).toList());
 
 Future createUser(
     {required String capacity,
