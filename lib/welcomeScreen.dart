@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:handsforhunger/Registration.dart';
+import 'package:handsforhunger/verifyEmail.dart';
 import 'logIn.dart';
 
 class WelcomeScreen extends StatefulWidget {
@@ -70,7 +71,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
             ),
             BottomButton(
               txt: 'Ngo',
-              path: Registpage(),
+              path: Verify(),
               h: h,
               w: w,
             ),

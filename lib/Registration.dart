@@ -17,8 +17,8 @@ class Registpage extends StatefulWidget {
 }
 
 class _RegistpageState extends State<Registpage> {
-  late String _text="";
-  late String _password="";
+  late String _text = "";
+  late String _password = "";
 
   @override
   Widget build(BuildContext context) {
@@ -229,11 +229,11 @@ class BottomButton extends StatelessWidget {
   // ignore: non_constant_identifier_names
   BottomButton(
       {required this.txt,
-        required this.path,
-        required this.h,
-        required this.w,
-        required this.text,
-        required this.password});
+      required this.path,
+      required this.h,
+      required this.w,
+      required this.text,
+      required this.password});
   double h, w;
   String txt, text, password;
   Widget path;
@@ -254,14 +254,14 @@ class BottomButton extends StatelessWidget {
             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
               content: Text("Please enter password"),
             ));
-
           } else
             Navigator.push(
                 context, MaterialPageRoute(builder: (context) => path));
         } catch (e) {
           print(e);
           ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text(e.toString()),
+            SnackBar(
+              content: Text(e.toString()),
               backgroundColor: Colors.red,
             ),
           );
@@ -275,7 +275,6 @@ class BottomButton extends StatelessWidget {
           width: w / 1.18,
           decoration: BoxDecoration(
               gradient: const LinearGradient(
-
                   colors: [Color(0xffFFDA94), Color(0xffFF942F)],
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter),
