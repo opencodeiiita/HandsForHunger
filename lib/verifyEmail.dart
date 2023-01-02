@@ -13,7 +13,7 @@ class Verify extends StatefulWidget {
 }
 
 late String _txt = "";
-late String _Password = "";
+late String _OTP = "";
 
 class _VerifyState extends State<Verify> {
   EmailOTP myauth = EmailOTP();
@@ -124,7 +124,7 @@ class _VerifyState extends State<Verify> {
                 child: Center(
                   child: TextFormField(
                     onChanged: (value) {
-                      _Password = value;
+                      _OTP = value;
                     },
                     decoration: InputDecoration(
                       border: InputBorder.none,
@@ -153,7 +153,7 @@ class _VerifyState extends State<Verify> {
               GestureDetector(
                 onTap: () async {
                   setState(() async {
-                    if (await myauth.verifyOTP(otp: _Password) == true) {
+                    if (await myauth.verifyOTP(otp: _OTP) == true) {
                       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                         content: Text("OTP is verified"),
                       ));
