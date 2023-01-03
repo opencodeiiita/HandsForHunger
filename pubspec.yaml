@@ -42,6 +42,8 @@ dependencies:
   sizer: ^2.0.15
   lottie: ^2.1.0
   page_transition: ^2.0.9
+  email_validator: ^2.1.17
+  email_otp: ^1.0.4
 
 dev_dependencies:
   flutter_test:
