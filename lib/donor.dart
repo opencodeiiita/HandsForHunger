@@ -318,6 +318,7 @@ class _DonorPageState extends State<DonorPage> {
                         capacity: quantity.toInt().toString(),
                         latitude: latitude.toString(),
                         longitude: longitude.toString(),
+                        address: location,
                       );
                     },
                     child: Container(
@@ -382,12 +383,14 @@ Future createUser(
     required String date,
     required String latitude,
     required String longitude,
+    required String address,
     required String veg}) async {
   final docUser = FirebaseFirestore.instance.collection('Inventory').doc();
   final user = User(
     id: docUser.id,
     veg: veg,
     date: date,
+    address: address,
     capacity: capacity,
     latitude: latitude,
     longitude: longitude,
@@ -398,10 +401,11 @@ Future createUser(
 
 class User {
   late String id;
-  final String veg, date, capacity, latitude, longitude;
+  final String veg, date, capacity, latitude, longitude, address;
   User(
       {this.id = '',
       required this.veg,
+      required this.address,
       required this.date,
       required this.capacity,
       required this.longitude,
@@ -410,6 +414,7 @@ class User {
   Map<String, dynamic> toJson() => {
         'userid': id,
         'veg': veg,
+        'address': address,
         'capacity': capacity,
         'latitude': latitude,
         'longitude': longitude,
@@ -418,8 +423,15 @@ class User {
   static User fromJson(Map<String, dynamic> json) => User(
       id: json['userid'],
       veg: json['veg'],
+      address: json['address'],
       date: json['date'],
       capacity: json['capacity'],
       latitude: json['latitude'],
       longitude: json['longitude']);
 }
+
+Stream<List<User>> readUsers() => FirebaseFirestore.instance
+    .collection('Inventory')
+    .snapshots()
+    .map((snapshot) =>
+        snapshot.docs.map((doc) => User.fromJson(doc.data())).toList());

@@ -2,9 +2,11 @@ import 'package:animated_splash_screen/animated_splash_screen.dart'
     show AnimatedSplashScreen, SplashTransition;
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:handsforhunger/HomeScreen.dart';
 import 'package:handsforhunger/donor.dart';
 import 'package:handsforhunger/verifyEmail.dart';
 import 'welcomeScreen.dart';
+import 'HomeScreen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -35,7 +37,7 @@ class MyApp extends StatelessWidget {
             ),
           ),
           duration: 2000,
-          nextScreen: Verify()),
+          nextScreen: HomeScreen()),
     );
   }
 }
