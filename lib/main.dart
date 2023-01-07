@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:handsforhunger/HomeScreen.dart';
 import 'package:handsforhunger/donor.dart';
+import 'package:handsforhunger/logIn.dart';
 import 'package:handsforhunger/verifyEmail.dart';
 import 'welcomeScreen.dart';
 import 'HomeScreen.dart';
@@ -37,7 +38,7 @@ class MyApp extends StatelessWidget {
             ),
           ),
           duration: 2000,
-          nextScreen: HomeScreen()),
+          nextScreen: LogInPage()),
     );
   }
 }
