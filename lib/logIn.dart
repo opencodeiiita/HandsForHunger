@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:handsforhunger/donor.dart';
+import 'package:handsforhunger/verifyEmail.dart';
 import 'package:handsforhunger/welcomeScreen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 import 'Registration.dart';
 
@@ -121,7 +124,7 @@ class _LogInPageState extends State<LogInPage> {
               ),
               BottomButton(
                 txt: 'Login',
-                path: LogInPage(),
+                path: DonorPage(),
                 h: h,
                 w: w,
                 text: login_email,
@@ -194,7 +197,7 @@ class _LogInPageState extends State<LogInPage> {
               GestureDetector(
                 onTap: () {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => Registpage()));
+                      MaterialPageRoute(builder: (context) => Verify()));
                 },
                 child: RichText(
                   text: TextSpan(
@@ -236,18 +239,40 @@ class BottomButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        if (text == "") {
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            content: Text("Please enter Email or Phone Number"),
-          ));
-        } else if (password == "") {
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            content: Text("Please enter password"),
-          ));
-        } else
+      onTap: () async {
+        print(text);
+        print(password);
+        try {
+          UserCredential userCredential = await FirebaseAuth.instance
+              .signInWithEmailAndPassword(email: text, password: password);
+
           Navigator.push(
-              context, MaterialPageRoute(builder: (context) => path));
+              context, MaterialPageRoute(builder: (context) => DonorPage()));
+        } on FirebaseAuthException catch (e) {
+          if (e.code == 'user-not-found') {
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              content: Text("No user found for that email."),
+              backgroundColor: Colors.red,
+            ));
+            print('No user found for that email.');
+          } else if (e.code == 'wrong-password') {
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              content: Text("Wrong Password"),
+              backgroundColor: Colors.red,
+            ));
+          }
+        }
+        // if (text == "") {
+        //   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        //     content: Text("Please enter Email or Phone Number"),
+        //   ));
+        // } else if (password == "") {
+        //   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        //     content: Text("Please enter password"),
+        //   ));
+        // } else
+        //   Navigator.push(
+        //       context, MaterialPageRoute(builder: (context) => path));
       },
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 30),
