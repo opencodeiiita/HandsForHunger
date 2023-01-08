@@ -38,7 +38,7 @@ class MyApp extends StatelessWidget {
             ),
           ),
           duration: 2000,
-          nextScreen: LogInPage()),
+          nextScreen: HomePage()),
     );
   }
 }
