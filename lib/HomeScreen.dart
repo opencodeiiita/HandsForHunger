@@ -57,10 +57,27 @@ class _HomePageState extends State<HomePage> {
                           child: Image.asset('images/food1.png')),
                     ],
                   ),
-                  Text(
-                    'Food items',
-                    style: GoogleFonts.poppins(
-                        fontSize: 20, fontWeight: FontWeight.w500),
+                  Row(
+                    children: [
+                      Text(
+                        'Food items',
+                        style: GoogleFonts.poppins(
+                            fontSize: 20, fontWeight: FontWeight.w500),
+                      ),
+                      Spacer(),
+                      IconButton(
+                          onPressed: () {
+                            setState(() {
+                              onpressed = !onpressed;
+                            });
+                          },
+                          icon: Icon(
+                            onpressed == true
+                                ? Icons.filter_alt_rounded
+                                : Icons.filter_alt_off_rounded,
+                            color: Colors.grey[600],
+                          )),
+                    ],
                   ),
                   SizedBox(
                     height: h / 80,
@@ -120,18 +137,6 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ],
                   ),
-                  IconButton(
-                      onPressed: () {
-                        setState(() {
-                          onpressed = !onpressed;
-                        });
-                      },
-                      icon: Icon(
-                        onpressed == true
-                            ? Icons.filter_alt_rounded
-                            : Icons.filter_alt_off_rounded,
-                        color: Colors.grey[600],
-                      )),
                   SingleChildScrollView(
                     child: HomeScreen(),
                   )
