@@ -7,9 +7,16 @@ import 'package:handsforhunger/logIn.dart';
 import 'Registration.dart';
 import 'donor.dart';
 
-class HomePage extends StatelessWidget {
+bool onpressed = false;
+
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     double h = (MediaQuery.of(context).size.height),
@@ -110,9 +117,21 @@ class HomePage extends StatelessWidget {
                             Text('People')
                           ],
                         ),
-                      )
+                      ),
                     ],
                   ),
+                  IconButton(
+                      onPressed: () {
+                        setState(() {
+                          onpressed = !onpressed;
+                        });
+                      },
+                      icon: Icon(
+                        onpressed == true
+                            ? Icons.filter_alt_rounded
+                            : Icons.filter_alt_off_rounded,
+                        color: Colors.grey[600],
+                      )),
                   SingleChildScrollView(
                     child: HomeScreen(),
                   )
@@ -139,7 +158,7 @@ class HomeScreen extends StatelessWidget {
               margin: EdgeInsets.symmetric(vertical: h / 60),
               // color: Colors.white,
               child: StreamBuilder<List<User>>(
-                stream: readUsers(),
+                stream: onpressed ? readUsers50() : readUsers(),
                 builder: ((context, snapshot) {
                   if (snapshot.hasError) {
                     return Text('Something went wrong! ${snapshot.error}');
@@ -184,7 +203,7 @@ class HomeScreen extends StatelessWidget {
                   children: [
                     Text(
                       // 'Approx ' +
-                      user.capacity + ' people',
+                      user.capacity.toString() + ' people',
                       style: GoogleFonts.poppins(
                           fontSize: 16, fontWeight: FontWeight.w600),
                     ),
