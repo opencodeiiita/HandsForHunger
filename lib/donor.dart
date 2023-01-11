@@ -315,7 +315,7 @@ class _DonorPageState extends State<DonorPage> {
                             selectedDate.month.toString() +
                             '/' +
                             selectedDate.year.toString(),
-                        capacity: quantity.toInt().toString(),
+                        capacity: quantity.toInt(),
                         latitude: latitude.toString(),
                         longitude: longitude.toString(),
                         address: location,
@@ -379,7 +379,7 @@ class Txt extends StatelessWidget {
 }
 
 Future createUser(
-    {required String capacity,
+    {required int capacity,
     required String date,
     required String latitude,
     required String longitude,
@@ -401,7 +401,8 @@ Future createUser(
 
 class User {
   late String id;
-  final String veg, date, capacity, latitude, longitude, address;
+  final String veg, date, latitude, longitude, address;
+  final int capacity;
   User(
       {this.id = '',
       required this.veg,
@@ -432,6 +433,12 @@ class User {
 
 Stream<List<User>> readUsers() => FirebaseFirestore.instance
     .collection('Inventory')
+    .snapshots()
+    .map((snapshot) =>
+        snapshot.docs.map((doc) => User.fromJson(doc.data())).toList());
+Stream<List<User>> readUsers50() => FirebaseFirestore.instance
+    .collection('Inventory')
+    .where("capacity", isGreaterThan: 50)
     .snapshots()
     .map((snapshot) =>
         snapshot.docs.map((doc) => User.fromJson(doc.data())).toList());
