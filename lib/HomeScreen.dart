@@ -16,11 +16,22 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
+int max = 100, min = 0;
+
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     double h = (MediaQuery.of(context).size.height),
         w = (MediaQuery.of(context).size.width);
+    String dropValue = 'all';
+    const List<String> filter = <String>[
+      '<10',
+      '11-20',
+      '20-50',
+      '50-100',
+      '>100',
+      'all'
+    ];
     return Scaffold(
       drawer: Drawer(
           backgroundColor: Colors.white,
@@ -68,29 +79,29 @@ class _HomePageState extends State<HomePage> {
                   w: w,
                   h: h,
                   icon: Icon(
-                    Icons.home_outlined,
+                    Icons.person,
                     size: 36,
                     color: Colors.grey[600],
                   ),
-                  txt: "Home"),
+                  txt: "Profile"),
               ListWidget(
                   w: w,
                   h: h,
                   icon: Icon(
-                    Icons.photo_size_select_actual_outlined,
+                    Icons.search,
                     size: 30,
                     color: Colors.grey[600],
                   ),
-                  txt: 'Photos'),
+                  txt: 'Search'),
               ListWidget(
                   w: w,
                   h: h,
                   icon: Icon(
-                    Icons.food_bank_outlined,
+                    Icons.menu,
                     size: 30,
                     color: Colors.grey[600],
                   ),
-                  txt: "My Donations"),
+                  txt: "Filter"),
               ListWidget(
                   w: w,
                   h: h,
@@ -99,7 +110,7 @@ class _HomePageState extends State<HomePage> {
                     size: 30,
                     color: Colors.grey[600],
                   ),
-                  txt: "Notifications"),
+                  txt: "Logout"),
               ListWidget(
                   w: w,
                   h: h,
@@ -236,30 +247,58 @@ class _HomePageState extends State<HomePage> {
                           ],
                         ),
                       ),
-                      Container(
-                        height: h / 25,
-                        margin: EdgeInsets.symmetric(horizontal: w / 80),
-                        padding: EdgeInsets.symmetric(horizontal: w / 60),
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            border: Border.all(
-                                color: Color(0xffF8993F), width: 2.0),
-                            borderRadius: BorderRadius.circular(10)),
-                        child: Row(
-                          children: [
-                            Icon(
-                              Icons.sort,
-                              color: Colors.grey,
-                            ),
-                            Text('People')
-                          ],
-                        ),
+                      DropdownButton<String>(
+                        value: dropValue,
+                        items: filter
+                            .map<DropdownMenuItem<String>>((String filter) {
+                          return DropdownMenuItem(
+                            child: Text(filter),
+                            value: filter,
+                          );
+                        }).toList(),
+                        onChanged: (String? value) {
+                          setState(() {
+                            dropValue = value!;
+                            if (dropValue == filter[0]) {
+                              print('0');
+                              max = 10;
+                              min = 0;
+                            }
+                            if (dropValue == filter[1]) {
+                              print('1');
+                              max = 20;
+                              min = 10;
+                            }
+                            if (dropValue == filter[2]) {
+                              print('2');
+                              max = 50;
+                              min = 20;
+                            }
+                            if (dropValue == filter[3]) {
+                              print('3');
+                              max = 100;
+                              min = 50;
+                            }
+                            if (dropValue == filter[4]) {
+                              print('4');
+                              max = 2000;
+                              min = 100;
+                            }
+                            if (dropValue == filter[5]) {
+                              print('5');
+                              max = 2000;
+                              min = 0;
+                            }
+                          });
+                        },
                       ),
                     ],
                   ),
                   SingleChildScrollView(
-                    child: HomeScreen(),
-                  )
+                      child: HomeScreen(
+                    m: max,
+                    n: min,
+                  ))
                 ],
               )),
         ),
@@ -307,7 +346,8 @@ class ListWidget extends StatelessWidget {
 }
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+  HomeScreen({required this.m, required this.n});
+  int m, n;
 
   @override
   Widget build(BuildContext context) {
@@ -321,12 +361,14 @@ class HomeScreen extends StatelessWidget {
               margin: EdgeInsets.symmetric(vertical: h / 60),
               // color: Colors.white,
               child: StreamBuilder<List<User>>(
-                stream: onpressed ? readUsers50() : readUsers(),
+                stream: readUsersN(m, n),
                 builder: ((context, snapshot) {
                   if (snapshot.hasError) {
                     return Text('Something went wrong! ${snapshot.error}');
                   } else if (snapshot.hasData) {
                     final users = snapshot.data!;
+                    print('object');
+                    print(m + n);
                     return ListView(
                       children: users.map(buildUser).toList(),
                     );
