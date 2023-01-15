@@ -22,6 +22,126 @@ class _HomePageState extends State<HomePage> {
     double h = (MediaQuery.of(context).size.height),
         w = (MediaQuery.of(context).size.width);
     return Scaffold(
+      drawer: Drawer(
+          backgroundColor: Colors.white,
+          child: ListView(
+            children: [
+              Container(
+                padding: EdgeInsets.only(top: h / 15, left: w / 18),
+                height: h / 3.3,
+                color: Color(0xffFFC648),
+                child: Column(
+                  children: [
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Image.network(
+                        'https://cdn-icons-png.flaticon.com/512/3135/3135715.png',
+                        height: h / 8,
+                      ),
+                    ),
+                    Container(
+                      padding: EdgeInsets.only(top: h / 80, bottom: h / 80),
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          'Monty Green',
+                          style: GoogleFonts.poppins(
+                              fontSize: 18, color: Colors.grey[800]),
+                        ),
+                      ),
+                    ),
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        'MontyGreen@gmail.com',
+                        style: GoogleFonts.merriweather(
+                            fontSize: 16, color: Colors.grey[700]),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: h / 50,
+              ),
+              ListWidget(
+                  w: w,
+                  h: h,
+                  icon: Icon(
+                    Icons.home_outlined,
+                    size: 36,
+                    color: Colors.grey[600],
+                  ),
+                  txt: "Home"),
+              ListWidget(
+                  w: w,
+                  h: h,
+                  icon: Icon(
+                    Icons.photo_size_select_actual_outlined,
+                    size: 30,
+                    color: Colors.grey[600],
+                  ),
+                  txt: 'Photos'),
+              ListWidget(
+                  w: w,
+                  h: h,
+                  icon: Icon(
+                    Icons.food_bank_outlined,
+                    size: 30,
+                    color: Colors.grey[600],
+                  ),
+                  txt: "My Donations"),
+              ListWidget(
+                  w: w,
+                  h: h,
+                  icon: Icon(
+                    Icons.notifications_active,
+                    size: 30,
+                    color: Colors.grey[600],
+                  ),
+                  txt: "Notifications"),
+              ListWidget(
+                  w: w,
+                  h: h,
+                  icon: Icon(
+                    Icons.settings,
+                    size: 30,
+                    color: Colors.grey[600],
+                  ),
+                  txt: "Settings"),
+              Padding(
+                  padding: EdgeInsets.only(top: h / 20),
+                  child: SizedBox(
+                      child: Divider(
+                    thickness: 2,
+                  ))),
+              Container(
+                padding: EdgeInsets.only(top: h / 40, left: w / 18),
+                child: Text(
+                  "Other",
+                  style: GoogleFonts.poppins(
+                      fontSize: 20, color: Colors.grey[500]),
+                ),
+              ),
+              Container(
+                padding: EdgeInsets.only(top: h / 40, left: w / 18),
+                child: Text(
+                  "About us",
+                  style: GoogleFonts.poppins(
+                      fontSize: 20, color: Colors.grey[700]),
+                ),
+              ),
+              Container(
+                padding: EdgeInsets.only(top: h / 40, left: w / 18),
+                child: Text(
+                  "Privacy",
+                  style: GoogleFonts.poppins(
+                      fontSize: 20, color: Colors.grey[700]),
+                ),
+              ),
+            ],
+          )),
+      appBar: AppBar(backgroundColor: Color(0xffFFC648)),
       backgroundColor: Color(0xffFFFCF5),
       body: Padding(
         padding: EdgeInsets.all(0),
@@ -143,6 +263,44 @@ class _HomePageState extends State<HomePage> {
                 ],
               )),
         ),
+      ),
+    );
+  }
+}
+
+class ListWidget extends StatelessWidget {
+  const ListWidget(
+      {Key? key,
+      required this.w,
+      required this.h,
+      required this.icon,
+      required this.txt})
+      : super(key: key);
+
+  final double w;
+  final double h;
+  final Icon icon;
+  final String txt;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.only(top: h / 40, left: w / 18),
+      child: Row(
+        children: [
+          icon,
+          SizedBox(
+            width: w / 15,
+          ),
+          Text(
+            txt,
+            style: GoogleFonts.openSans(
+              fontSize: 26,
+              color: Colors.grey[600],
+              fontWeight: FontWeight.w600,
+            ),
+          )
+        ],
       ),
     );
   }
