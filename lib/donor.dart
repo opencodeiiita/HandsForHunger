@@ -436,9 +436,9 @@ Stream<List<User>> readUsers() => FirebaseFirestore.instance
     .snapshots()
     .map((snapshot) =>
         snapshot.docs.map((doc) => User.fromJson(doc.data())).toList());
-Stream<List<User>> readUsers50() => FirebaseFirestore.instance
+Stream<List<User>> readUsersN(int mx, int mn) => FirebaseFirestore.instance
     .collection('Inventory')
-    .where("capacity", isGreaterThan: 50)
+    .where("capacity", isGreaterThanOrEqualTo: mn, isLessThanOrEqualTo: mx)
     .snapshots()
     .map((snapshot) =>
         snapshot.docs.map((doc) => User.fromJson(doc.data())).toList());
